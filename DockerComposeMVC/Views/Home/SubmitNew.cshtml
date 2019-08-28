@@ -1,0 +1,16 @@
+﻿<h2>@ViewData["Title"]</h2>
+
+@if ((bool)ViewData["success"])
+{
+    <div class="alert-success">
+        <p class="alert">@ViewData["message"]</p>
+    </div>
+}
+else
+{
+    <div class="alert-danger">
+        <p class="alert">@ViewData["message"]</p>
+    </div>
+}
+@Html.ActionLink("Go to the Status page", "Status");
+@ViewData["content"]

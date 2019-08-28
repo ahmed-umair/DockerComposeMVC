@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Stopped";
+}
+
+<h2>
+    @if ((bool)ViewData["success"])
+    {<text> Stopped! </text>}
+else
+{ <text>Error!</text>}
+</h2>
+
+@if ((bool)ViewData["success"])
+{
+    <div class="alert-success">
+        <p class="alert">@ViewData["message"]</p>
+    </div>
+}
+else
+{
+    <div class="alert-danger">
+        <p class="alert">@ViewData["message"]</p>
+    </div>
+}
+

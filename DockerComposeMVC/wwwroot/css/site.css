@@ -35,3 +35,14 @@ body {
         display: none;
     }
 }
+
+/*
+    Grid for displaying boxes of compose services and also for displaying containers inside a single compose service
+*/
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(auto-fill);
+    grid-column-gap: 2em 2em 2em;
+    grid-row-gap: 2em 2em 2em;
+}
