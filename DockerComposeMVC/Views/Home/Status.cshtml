@@ -1,34 +1,37 @@
 ﻿@model List<ContainerModel>
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+
 
 <div class="container">
-    <div class="row">
-        <a class="btn-link" href="@Url.Action("Stop")">Stop this!</a>
+    <h2>@ViewData["Title"]</h2>
+    <h3>@ViewData["Message"]</h3>
+    <div class="row justify-content-end">
+        <a class="btn btn-danger mx-3" href="@Url.Action("Stop")">Stop this container set!</a>
     </div>
-    <div class="grid-container">
-        @foreach (ContainerModel container in Model)
-        {
-            <div class="card border-success mx-3 my-3">
-                <div class="card-header font-weight-bold">@container.Image</div>
-                <div class="card-body">
-                    @*<h5 class="card-title">@container.Name</h5>*@
-                    <ul>
-                        <li><b>Container ID:</b> <span>@container.Id</span></li>
-                        <li><b>Container Name:</b> <span>@container.Name</span></li>
-                        <li><b>Image:</b> <span>@container.Image</span></li>
-                        <li>
-                            <b>OS Type:</b> <span>
-                                @if (container.IsWindows)
-                                {<text>Windows</text> }
-                            else
-                            {<text>Linux</text>}
-                        </span>
-                    </li>
-                    <li><b>State:</b> <span>@container.State</span></li>
-                </ul>
-            </div>
+    <div class="row">
+        <div class="grid-container">
+            @foreach (ContainerModel container in Model)
+            {
+                <div class="card border-success mx-3 my-3">
+                    <div class="card-header font-weight-bold">@container.Image</div>
+                    <div class="card-body">
+                        @*<h5 class="card-title">@container.Name</h5>*@
+                        <ul>
+                            <li><b>Container ID:</b> <span>@container.Id</span></li>
+                            <li><b>Container Name:</b> <span>@container.Name</span></li>
+                            <li><b>Image:</b> <span>@container.Image</span></li>
+                            <li>
+                                <b>OS Type:</b> <span>
+                                    @if (container.IsWindows)
+                                    {<text>Windows</text> }
+                                else
+                                {<text>Linux</text>}
+                                </span>
+                            </li>
+                            <li><b>State:</b> <span>@container.State</span></li>
+                        </ul>
+                    </div>
+                </div>
+            }
         </div>
-    }
     </div>
 </div>
