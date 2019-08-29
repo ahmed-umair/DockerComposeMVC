@@ -3,24 +3,22 @@
 }
 
 <div class="row">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Please choose an option below</h1>
-        </div>
+    <div class="col-md-10">
+        <h1>Please choose an option below</h1>
     </div>
+    <div class="col-md-2 my-md-auto">
+        <a class="btn btn-dark" asp-controller="Home" asp-action="Upload">Upload Compose</a>
+    </div>
+</div>
 
-    <div class="row justify-content-around">
-        <div class="col-md-4">
-            <a asp-area="" asp-controller="Home" asp-action="StartNew"><h3>Start a new multi-container application</h3></a>
-
-        </div>
-        <div class="col-md-4">
-            <a asp-area="" asp-controller="Home" asp-action="Status"><h3>Check status of running multi-container application</h3></a>
-
-        </div>
-        <div class="col-md-4">
-            <a asp-area="" asp-controller="Home" asp-action=""><h3>Check configurations of previously run applications</h3></a>
-
-        </div>
+<div class="row justify-content-around">
+    <div class="col-md-4">
+        <a asp-area="" asp-controller="Home" asp-action="StartNew"><h3>Start a new multi-container application</h3></a>
+    </div>
+    <div class="col-md-4 ">
+        <a asp-area="" asp-controller="Home" asp-action="Status"><h3>Check status of running multi-container application</h3></a>
+    </div>
+    <div class="col-md-4 ">
+        <a asp-area="" asp-controller="Home" asp-action=""><h3>Check configurations of previously run applications</h3></a>
     </div>
 </div>

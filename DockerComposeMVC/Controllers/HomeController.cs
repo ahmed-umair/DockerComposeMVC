@@ -37,6 +37,11 @@ namespace DockerComposeMVC.Controllers
             return View(containers);
         }
 
+        public IActionResult Upload()
+        {
+            return View();
+        }
+
         public IActionResult StatusDebug()
         {
             return Ok(Composer.GetStatus() + " " + Composer.GetStatus().Length);
