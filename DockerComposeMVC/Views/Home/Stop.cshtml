@@ -7,7 +7,7 @@
     @if ((bool)ViewData["success"])
     {<text> Stopped! </text>}
 else
-{ <text>Error!</text>}
+    { <text>Error!</text>}
 </h2>
 
 @if ((bool)ViewData["success"])
@@ -18,7 +18,7 @@ else
 }
 else
 {
-    <div class="alert-danger">
+    <div class="alert-info">
         <p class="alert">@ViewData["message"]</p>
     </div>
 }

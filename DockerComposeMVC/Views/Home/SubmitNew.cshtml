@@ -2,7 +2,7 @@
 
 @if ((bool)ViewData["success"])
 {
-    <div class="alert-success">
+    <div class="alert-info">
         <p class="alert">@ViewData["message"]</p>
     </div>
 }
@@ -12,5 +12,5 @@ else
         <p class="alert">@ViewData["message"]</p>
     </div>
 }
-@Html.ActionLink("Go to the Status page", "Status");
+@Html.ActionLink("Go to the Status page", "Status")
 @ViewData["content"]

@@ -61,7 +61,7 @@ namespace DockerComposeMVC.Controllers
             return View(Params.ReadParamsList());
         }
 
-        public IActionResult Privacy()
+        public IActionResult UploadCompose()
         {
             return View();
         }
