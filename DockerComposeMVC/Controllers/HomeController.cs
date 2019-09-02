@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using DockerComposeMVC.Models;
 using System.Reflection;
 using System.Threading;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+
 
 namespace DockerComposeMVC.Controllers
 {
@@ -35,6 +38,37 @@ namespace DockerComposeMVC.Controllers
             var containers = Composer.GetDetailedStatus();
 
             return View(containers);
+        }
+
+        public IActionResult Upload()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        [HttpPost]
+        public async Task<IActionResult> UploadFiles(IEnumerable<IFormFile> file)
+        {
+            long size = file.Sum(f => f.Length);
+
+            // full path to file in temp location
+            var filePath = Path.GetTempFileName();
+
+            foreach (var formFile in file)
+            {
+                if (formFile.Length > 0)
+                {
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+                }
+            }
+
+            // process uploaded files
+            // Don't rely on or trust the FileName property without validation.
+
+            return Ok(new {size, filePath});
         }
 
         public IActionResult StatusDebug()
