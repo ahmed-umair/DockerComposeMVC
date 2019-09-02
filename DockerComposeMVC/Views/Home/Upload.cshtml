@@ -4,29 +4,27 @@
 
 <h2>Upload A Compose File</h2><br />
 
-@using (Html.BeginForm("ActionmethodName", "ControllerName", FormMethod.Post, new { id = "formid" }))
-{
+<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="UploadFiles">                         
     <div class="input-group row">
         <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
         </div>
         <div class="custom-file col-md-6">
             <input type="file" name="file" class="custom-file-input" id="inputGroupFile01"
-                   aria-describedby="inputGroupFileAddon01">
+                    aria-describedby="inputGroupFileAddon01">
             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
         </div>
         <div class="col-md-3">
             <button type="submit" value="Upload" id="btnid" class="btn btn-dark">Verify and Upload</button>
         </div>
     </div>
+ </form>
 
-}
-
-@section scripts {
-    <script>
-        $(".custom-file-input").on("change", function () {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        });
-    </script>
-}
+    @section scripts {
+        <script>
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+        </script>
+    }
