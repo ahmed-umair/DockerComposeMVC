@@ -1,0 +1,5 @@
+{
+  "DataDirectory":"data",
+  "ComposeTemplateDirectory":"compose-templates",
+  "ComposeReadyDirectory":"compose-ready",
+}

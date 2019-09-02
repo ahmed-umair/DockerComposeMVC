@@ -42,6 +42,11 @@ namespace DockerComposeMVC.Controllers
             return Ok(Composer.GetStatus() + " " + Composer.GetStatus().Length);
         }
 
+        public IActionResult GetConfig() {
+            Configuration.ReadConfigFile();
+            return Ok(Configuration.GetConfig());
+        }
+
         public IActionResult Stop()
         {
             ViewData["success"] = false;
