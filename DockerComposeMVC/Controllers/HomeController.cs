@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Threading;
 using System.IO;
 using Microsoft.AspNetCore.Http;
-
+using Microsoft.Extensions.Primitives;
 
 namespace DockerComposeMVC.Controllers
 {
@@ -17,6 +17,7 @@ namespace DockerComposeMVC.Controllers
     {
         public IActionResult Index()
         {
+            
             return View();
         }
 
@@ -47,28 +48,43 @@ namespace DockerComposeMVC.Controllers
 
         //[HttpPost]
         [HttpPost]
-        public async Task<IActionResult> UploadFiles(IEnumerable<IFormFile> file)
-        {
+        public async Task<IActionResult> UploadFiles(IEnumerable<IFormFile> file, IFormCollection form)
+        {      
             long size = file.Sum(f => f.Length);
-
+          
             // full path to file in temp location
             var filePath = Path.GetTempFileName();
+         
+            var sourceFileName = "";
 
             foreach (var formFile in file)
             {
                 if (formFile.Length > 0)
                 {
+                    sourceFileName = formFile.FileName;
+                
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await formFile.CopyToAsync(stream);
                     }
                 }
             }
+            StringValues filename;
+            string contents = System.IO.File.ReadAllText(filePath);
+            form.TryGetValue("destFileName", out filename);
+            
+            try
+            {
+                System.IO.File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "temp/" + filename + ".yaml"), contents);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
 
-            // process uploaded files
-            // Don't rely on or trust the FileName property without validation.
-
-            return Ok(new {size, filePath});
+            
+            return Ok(new { size, filePath });
+            //return View("Index");
         }
 
         public IActionResult StatusDebug()

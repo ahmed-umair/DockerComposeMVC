@@ -4,19 +4,32 @@
 
 <h2>Upload A Compose File</h2><br />
 
-<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="UploadFiles">                         
-    <div class="input-group row">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+<form method="post" name="form" enctype="multipart/form-data" asp-controller="Home" asp-action="UploadFiles">                         
+    <div>
+        <div class="input-group row">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file col-md-6">
+                <input type="file" name="file" class="custom-file-input" id="inputGroupFile01"
+                       aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
         </div>
-        <div class="custom-file col-md-6">
-            <input type="file" name="file" class="custom-file-input" id="inputGroupFile01"
-                    aria-describedby="inputGroupFileAddon01">
-            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+        <br />
+
+        <div class="input-group row">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Destination File Name : </span>
+                <input type="text" name="destFileName" aria-label="First name" class="form-control col-md-11">
+            </div>
         </div>
-        <div class="col-md-3">
+        <br />
+
+        <div class="row">
             <button type="submit" value="Upload" id="btnid" class="btn btn-dark">Verify and Upload</button>
         </div>
+
     </div>
  </form>
 
