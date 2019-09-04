@@ -10,6 +10,7 @@ using System.Threading;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
+using System.Text.RegularExpressions;
 
 namespace DockerComposeMVC.Controllers
 {
@@ -49,12 +50,12 @@ namespace DockerComposeMVC.Controllers
         //[HttpPost]
         [HttpPost]
         public async Task<IActionResult> UploadFiles(IEnumerable<IFormFile> file, IFormCollection form)
-        {      
+        {
             long size = file.Sum(f => f.Length);
-          
+
             // full path to file in temp location
             var filePath = Path.GetTempFileName();
-         
+
             var sourceFileName = "";
 
             foreach (var formFile in file)
@@ -62,7 +63,7 @@ namespace DockerComposeMVC.Controllers
                 if (formFile.Length > 0)
                 {
                     sourceFileName = formFile.FileName;
-                
+
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await formFile.CopyToAsync(stream);
@@ -72,7 +73,16 @@ namespace DockerComposeMVC.Controllers
             StringValues filename;
             string contents = System.IO.File.ReadAllText(filePath);
             form.TryGetValue("destFileName", out filename);
-            
+
+            var output = String.Join(";", Regex.Matches(contents, @"\${{(.+?)}}")
+                                                .Cast<Match>()
+                                                .Select(m => m.Groups[1].Value));
+            String[] parameters = output.Split(';');
+            foreach (String s in parameters)
+            {
+                Console.WriteLine(s);
+            }
+
             try
             {
                 System.IO.File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "temp/" + filename + ".yaml"), contents);
@@ -82,9 +92,14 @@ namespace DockerComposeMVC.Controllers
                 Debug.WriteLine(e.Message);
             }
 
-            
-            return Ok(new { size, filePath });
-            //return View("Index");
+            //return Ok(new { size, filePath });
+            return View("AddParameters", parameters);
+        }
+
+        public IActionResult AddParameters()
+        {
+            var paramsArray = ViewBag.prams;
+            return View(paramsArray);
         }
 
         public IActionResult StatusDebug()
