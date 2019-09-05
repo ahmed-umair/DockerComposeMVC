@@ -51,56 +51,52 @@ namespace DockerComposeMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> UploadFiles(IEnumerable<IFormFile> file, IFormCollection form)
         {
-            long size = file.Sum(f => f.Length);
-
-            // full path to file in temp location
+            //full path to file in temp location
             var filePath = Path.GetTempFileName();
-
-            var sourceFileName = "";
-
+            
             foreach (var formFile in file)
             {
                 if (formFile.Length > 0)
                 {
-                    sourceFileName = formFile.FileName;
-
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await formFile.CopyToAsync(stream);
                     }
                 }
             }
+
             StringValues filename;
             string contents = System.IO.File.ReadAllText(filePath);
             form.TryGetValue("destFileName", out filename);
 
-            var output = String.Join(";", Regex.Matches(contents, @"\${{(.+?)}}")
+            String output = String.Join(";", Regex.Matches(contents, @"\${{(.+?)}}")
                                                 .Cast<Match>()
                                                 .Select(m => m.Groups[1].Value));
             String[] parameters = output.Split(';');
-            foreach (String s in parameters)
+          
+            if (string.IsNullOrEmpty(output))
             {
-                Console.WriteLine(s);
+                return View("AddParameters");
             }
 
             try
             {
-                System.IO.File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "temp/" + filename + ".yaml"), contents);
+                System.IO.File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "temp/" + filename + ".yaml"), contents);  
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e.Message);
             }
-
-            //return Ok(new { size, filePath });
+            ViewData["fileString"] = contents;
             return View("AddParameters", parameters);
+            //return Ok(new { size, filePath })
         }
 
-        public IActionResult AddParameters()
-        {
-            var paramsArray = ViewBag.prams;
-            return View(paramsArray);
-        }
+        //public IActionResult AddParameters()
+        //{
+        //    var paramsArray = ViewBag.prams;
+        //    return View(paramsArray);
+        //}
 
         public IActionResult StatusDebug()
         {
@@ -157,6 +153,32 @@ namespace DockerComposeMVC.Controllers
 
 
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateCustom([FromForm] Dictionary<string, string> dict, String fileString)
+        {
+            if (Composer.GetStatus() == "Running")
+            {
+                ViewData["Title"] = "Failure";
+                ViewData["success"] = false;
+                ViewData["message"] = "A multi-container application is already running. Please stop it before attempting to start another one!";
+                return View();
+            }
+           
+            string finalComposeString = ComposeFileOperations.ReplaceParams(fileString, dict);
+            if (ComposeFileOperations.WriteToFile(finalComposeString))
+            {
+                Composer.Run("Compose_Application");
+                Thread.Sleep(1000);
+
+                ViewData["Title"] = "Success";
+                ViewData["success"] = true;
+                ViewData["message"] = "Your application has been started. You will be redirected to the status page in a few seconds.";
+                ViewData["status"] = Composer.GetStatus();
+            }
+            
+            return View("SubmitNew");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
