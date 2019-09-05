@@ -107,7 +107,8 @@ namespace DockerComposeMVC.Controllers
         {
             Configuration.ReadConfigFile();
             var config = Configuration.GetConfig();
-            var list = ComposeFileOperationsNew.GetComposeFromFiles(Path.Combine(Directory.GetCurrentDirectory(), "data\ready"));
+
+            var list = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\ready"), true);
             return Ok(list);
         }
 
