@@ -1,0 +1,17 @@
+version: "2.4"
+services:
+  #TeamCity Server
+  tc-server:
+    image: jetbrains/teamcity-server
+    volumes:
+      - .\datadir:/data/teamcity_server/datadir
+      - .\logs:/opt/teamcity/logs
+    ports:
+      - "8111:8111"
+  #TeamCity Build Agent
+  tc-build-agent:
+    image: jetbrains/teamcity-agent
+    volumes:
+      - .\agent\conf:/data/teamcity_agent/conf
+    environment:
+      SERVER_URL : "http://tc-server:8111"

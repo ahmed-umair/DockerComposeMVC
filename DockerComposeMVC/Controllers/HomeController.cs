@@ -103,6 +103,13 @@ namespace DockerComposeMVC.Controllers
             return Ok(Composer.GetStatus() + " " + Composer.GetStatus().Length);
         }
 
+        public IActionResult GetConfig() {
+            Configuration.ReadConfigFile();
+            var config = Configuration.GetConfig();
+            var list = ComposeFileOperationsNew.GetComposeFromFile(Path.Combine(Directory.GetCurrentDirectory(), "data\ready"));
+            return Ok(list);
+        }
+
         public IActionResult Stop()
         {
             ViewData["success"] = false;
