@@ -78,7 +78,8 @@ namespace DockerComposeMVC.Controllers
 
         public IActionResult GetConfig() {
             Configuration.ReadConfigFile();
-            return Ok(Configuration.GetConfig());
+            var list = ComposeFileOperationsNew.GetComposeTemplates();
+            return Ok(list);
         }
 
         public IActionResult Stop()

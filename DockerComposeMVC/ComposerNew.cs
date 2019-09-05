@@ -9,8 +9,8 @@ namespace DockerComposeMVC
 {
     public class ComposerNew
     {
-        private static List<ICompositeService> AllServicesList = new List<ICompositeService>();
-        private static List<ICompositeService> RunningServicesList = new List<ICompositeService>();
+        private static Dictionary<string, ICompositeService> AllServicesList = new Dictionary<string, ICompositeService>();
+        private static Dictionary<string, ICompositeService> RunningServicesList = new Dictionary<string, ICompositeService>();
         private static readonly string BasePath = Path.Combine(Directory.GetCurrentDirectory(), "config");
 
         public static void PopulateAllServicesList() { }
