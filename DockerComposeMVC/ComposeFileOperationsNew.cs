@@ -15,23 +15,22 @@ namespace DockerComposeMVC
 {
     public class ComposeFileOperationsNew
     {
-        public static Dictionary<string, CompositeModel> GetComposeFromFiles(string directory)
+        public static List<CompositeModel> LoadCompositesFromFiles(string directory, bool ready)
         {
             var config = Configuration.GetConfig();
-            var list = new Dictionary<string, CompositeModel>();
+            var list = new List<CompositeModel>();
             var templatePath = directory;
             string[] fileNames = Directory.GetFiles(templatePath);
-            var json = "";
-            foreach (var FileName in fileNames)
-            {
-                
 
-                list.Add(name, composite);
+            foreach (var FileName in fileNames)
+            { 
+                var composite = GetCompositeFromSingleFile(FileName, ready);
+                list.Add(composite);
             }
             return list;
         }
 
-        public static CompositeModel GetComposeFromSingleFile(string FileName) {
+        public static CompositeModel GetCompositeFromSingleFile(string FileName, bool ready) {
 
             var yaml = new StreamReader(FileName);
             var deserializer = new DeserializerBuilder().Build();
@@ -45,11 +44,24 @@ namespace DockerComposeMVC
             var name = FileName.Substring(FileName.LastIndexOf('\\') + 1);
             var composite = new CompositeModel
             {
-                Name = FileName.Substring(FileName.LastIndexOf('\\') + 1).Substring(0, FileName.IndexOf('.')),
+                Name = name,
                 FilePath = FileName,
                 ContainersFromFile = JSONtoContainers(json),
-                ReadyForExecution = false
+                ReadyForExecution = ready
             };
+
+            if (ready)
+            {
+                composite.Service = new Builder()
+                                  .UseContainer()
+                                  .FromComposeFile(composite.FilePath)
+                                  .RemoveOrphans()
+                                  .KeepVolumes()
+                                  .ForceRecreate()
+                                  .ServiceName(composite.Name)
+                                  .Build();
+            }
+            return composite;
         }
 
 
@@ -115,7 +127,6 @@ namespace DockerComposeMVC
                     }
                 }
 
-
                 list.Add(container);
             };
             return list;
@@ -140,18 +151,7 @@ namespace DockerComposeMVC
 
         public static bool RemoveComposeTemplate(string FileName)
         { return true; }
-        public static Dictionary<string, ICompositeService> LoadComposeReadyFiles()
-        {
-            var config = Configuration.GetConfig();
-            var serviceDict = new Dictionary<string, ICompositeService>();
-            var templatePath = Path.Combine(Directory.GetCurrentDirectory(), config.GetValueOrDefault("ComposeTemplate", @"data\ready"));
-            string[] fileNames = Directory.GetFiles(templatePath);
-
-            foreach (var FileName in fileNames)
-            {
-                
-            }
-        }
+        
         public static bool AddComposeReadyFile(string content, string FileName) { return true; }
         public static bool RemoveComposeReadyFile(string FileName) { return true; }
         public static Dictionary<string, string> GetParamsListFromFile(string FileName) { return new Dictionary<string, string>(); }
