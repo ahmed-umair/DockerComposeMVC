@@ -13,7 +13,7 @@ namespace DockerComposeMVC
     public class Composer
     {
         //private static List<ICompositeService> servicesList = new List<ICompositeService>();
-        private static readonly string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "config/s");
+        private static readonly string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "config/compose-destination.yml");
         private static ICompositeService svc = new Builder()
                                             .UseContainer()
                                             .FromComposeFile(FilePath)
@@ -30,7 +30,7 @@ namespace DockerComposeMVC
             {
                 throw new FileNotFoundException("Compose file not found in the given location");
             }
-            else if (svc != null && svc.State.ToString() is "Running")
+            if (svc != null && svc.State.ToString() is "Running")
             {
                 throw new InvalidOperationException("SERVICE_ALREADY_RUNNING");
             }

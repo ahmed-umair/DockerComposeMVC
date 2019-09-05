@@ -88,6 +88,7 @@ namespace DockerComposeMVC.Controllers
                 Debug.WriteLine(e.Message);
             }
             ViewData["fileString"] = contents;
+            ViewData["fileName"] = filename;
             return View("AddParameters", parameters);
             //return Ok(new { size, filePath })
         }
@@ -123,14 +124,7 @@ namespace DockerComposeMVC.Controllers
             }
             return View();
         }
-
-        public IActionResult StartNew()
-        {
-            ViewData["Message"] = "Please fill out the configuration details below and click Start!";
-
-            return View(Params.ReadParamsList());
-        }
-
+                
         public IActionResult UploadCompose()
         {
             return View();
