@@ -19,18 +19,18 @@ namespace DockerComposeMVC
         {
             var config = Configuration.GetConfig();
             var list = new List<CompositeModel>();
-            var templatePath = directory;
-            string[] fileNames = Directory.GetFiles(templatePath);
+            var FolderPath = directory;
+            string[] fileNames = Directory.GetFiles(FolderPath);
 
             foreach (var FileName in fileNames)
             { 
-                var composite = GetCompositeFromSingleFile(FileName, ready);
+                var composite = LoadCompositeFromSingleFile(FileName, ready);
                 list.Add(composite);
             }
             return list;
         }
 
-        public static CompositeModel GetCompositeFromSingleFile(string FileName, bool ready) {
+        public static CompositeModel LoadCompositeFromSingleFile(string FileName, bool ready) {
 
             var yaml = new StreamReader(FileName);
             var deserializer = new DeserializerBuilder().Build();

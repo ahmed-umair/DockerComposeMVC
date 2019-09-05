@@ -21,10 +21,10 @@ namespace DockerComposeMVC.Models
             this.IsWindows = container.IsWindowsContainer;
             this.State = container.State.ToString();
 
-            //foreach (var kvPair in config.NetworkSettings.Ports)
-            //{
-            //    PortMappings.Add(kvPair.Key + " : " + kvPair.Value.ToString());
-            //}
+            foreach (var kvPair in config.NetworkSettings.Ports)
+            {
+                PortMappings.Add(kvPair.Key + " : " + kvPair.Value.ToString());
+            }
         }
         public string Id { get; set; }
         public string Name { get; set; }
