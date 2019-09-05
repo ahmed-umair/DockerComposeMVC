@@ -9,7 +9,8 @@ using System.Reflection;
 using System.Threading;
 using System.IO;
 using Microsoft.AspNetCore.Http;
-
+using Microsoft.Extensions.Primitives;
+using System.Text.RegularExpressions;
 
 namespace DockerComposeMVC.Controllers
 {
@@ -17,6 +18,7 @@ namespace DockerComposeMVC.Controllers
     {
         public IActionResult Index()
         {
+            
             return View();
         }
 
@@ -47,13 +49,11 @@ namespace DockerComposeMVC.Controllers
 
         //[HttpPost]
         [HttpPost]
-        public async Task<IActionResult> UploadFiles(IEnumerable<IFormFile> file)
+        public async Task<IActionResult> UploadFiles(IEnumerable<IFormFile> file, IFormCollection form)
         {
-            long size = file.Sum(f => f.Length);
-
-            // full path to file in temp location
+            //full path to file in temp location
             var filePath = Path.GetTempFileName();
-
+            
             foreach (var formFile in file)
             {
                 if (formFile.Length > 0)
@@ -65,20 +65,49 @@ namespace DockerComposeMVC.Controllers
                 }
             }
 
-            // process uploaded files
-            // Don't rely on or trust the FileName property without validation.
+            StringValues filename;
+            string contents = System.IO.File.ReadAllText(filePath);
+            form.TryGetValue("destFileName", out filename);
 
-            return Ok(new {size, filePath});
+            String output = String.Join(";", Regex.Matches(contents, @"\${{(.+?)}}")
+                                                .Cast<Match>()
+                                                .Select(m => m.Groups[1].Value));
+            String[] parameters = output.Split(';');
+          
+            if (string.IsNullOrEmpty(output))
+            {
+                return View("AddParameters");
+            }
+
+            try
+            {
+                System.IO.File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "temp/" + filename + ".yaml"), contents);  
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
+            ViewData["fileString"] = contents;
+            return View("AddParameters", parameters);
+            //return Ok(new { size, filePath })
         }
+
+        //public IActionResult AddParameters()
+        //{
+        //    var paramsArray = ViewBag.prams;
+        //    return View(paramsArray);
+        //}
 
         public IActionResult StatusDebug()
         {
             return Ok(Composer.GetStatus() + " " + Composer.GetStatus().Length);
         }
 
-        public IActionResult GetConfig() {
+        public IActionResult GetConfig()
+        {
             Configuration.ReadConfigFile();
             var config = Configuration.GetConfig();
+
             var list = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\ready"), true);
             return Ok(list);
         }
@@ -133,6 +162,32 @@ namespace DockerComposeMVC.Controllers
 
 
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateCustom([FromForm] Dictionary<string, string> dict, String fileString)
+        {
+            if (Composer.GetStatus() == "Running")
+            {
+                ViewData["Title"] = "Failure";
+                ViewData["success"] = false;
+                ViewData["message"] = "A multi-container application is already running. Please stop it before attempting to start another one!";
+                return View();
+            }
+           
+            string finalComposeString = ComposeFileOperations.ReplaceParams(fileString, dict);
+            if (ComposeFileOperations.WriteToFile(finalComposeString))
+            {
+                Composer.Run("Compose_Application");
+                Thread.Sleep(1000);
+
+                ViewData["Title"] = "Success";
+                ViewData["success"] = true;
+                ViewData["message"] = "Your application has been started. You will be redirected to the status page in a few seconds.";
+                ViewData["status"] = Composer.GetStatus();
+            }
+            
+            return View("SubmitNew");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

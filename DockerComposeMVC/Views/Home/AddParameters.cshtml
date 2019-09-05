@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Specify the Parameter Values";
+}
+@model String[]
+
+@{
+    if (Model == null)
+    {
+        <h2>Upload Error</h2>
+        <h4>Please upload a compose file with parameters</h4>
+        <a class="btn btn-dark" href="~/">Try Again</a>
+    }
+    else
+    {
+        <h2>File Successfully Uploaded</h2>
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ContentModal">
+            View File
+        </button>
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+            Add Parameters
+        </button>
+
+        <!-- File Content Modal -->
+        <div class="modal fade" id="ContentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{fileName}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <pre>@ViewData["fileString"]</pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Add Parameters Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Parameters</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form id="paramsForm" action="@Url.Action("CreateCustom")" method="POST">
+                            @{ foreach (string item in Model)
+                                {
+                                    <div class="row">
+
+                                        <div class="form-group col-md-6">
+                                            <label for="my-input">@item</label>
+                                            <input id="my-input" class="form-control" type="text" name="@item">
+                                        </div>
+
+                                    </div>
+                                }
+                            }
+                            <input type="hidden" name="fileString" value="@ViewData["fileString"]" />
+                            <button type="submit" class="btn btn-success">Verify</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
