@@ -15,28 +15,41 @@ namespace DockerComposeMVC
 {
     public class ComposeFileOperationsNew
     {
-        public static List<List<ContainerModel>> GetComposeTemplates()
+        public static Dictionary<string, CompositeModel> GetComposeFromFiles(string directory)
         {
             var config = Configuration.GetConfig();
-            var list = new List<List<ContainerModel>>();
-            var templatePath = Path.Combine(Directory.GetCurrentDirectory(), config.GetValueOrDefault("ComposeTemplate", @"data\templates"));
+            var list = new Dictionary<string, CompositeModel>();
+            var templatePath = directory;
             string[] fileNames = Directory.GetFiles(templatePath);
             var json = "";
             foreach (var FileName in fileNames)
             {
+                
 
-                var yaml = new StreamReader(FileName);
-                var deserializer = new DeserializerBuilder().Build();
-                var yamlObject = deserializer.Deserialize(yaml);
-
-                var serializer = new SerializerBuilder()
-                    .JsonCompatible()
-                    .Build();
-
-                json = serializer.Serialize(yamlObject);
-                list.Add(JSONtoContainers(json));
+                list.Add(name, composite);
             }
             return list;
+        }
+
+        public static CompositeModel GetComposeFromSingleFile(string FileName) {
+
+            var yaml = new StreamReader(FileName);
+            var deserializer = new DeserializerBuilder().Build();
+            var yamlObject = deserializer.Deserialize(yaml);
+
+            var serializer = new SerializerBuilder()
+                .JsonCompatible()
+                .Build();
+
+            var json = serializer.Serialize(yamlObject);
+            var name = FileName.Substring(FileName.LastIndexOf('\\') + 1);
+            var composite = new CompositeModel
+            {
+                Name = FileName.Substring(FileName.LastIndexOf('\\') + 1).Substring(0, FileName.IndexOf('.')),
+                FilePath = FileName,
+                ContainersFromFile = JSONtoContainers(json),
+                ReadyForExecution = false
+            };
         }
 
 
@@ -50,16 +63,16 @@ namespace DockerComposeMVC
                 var container = new ContainerModel { Name = service.Key };
                 var jsonContainer = (JObject)service.Value;
 
-                //add image
+                //add image to ContainerModel
                 if (!(jsonContainer["image"] is null))
                 {
                     container.Image = jsonContainer["image"].Value<string>();
                 }
-                else if(jsonContainer["image"] is null && !(jsonContainer["build"] is null))
+                else if (jsonContainer["image"] is null && !(jsonContainer["build"] is null))
                 {
                     container.Image = "Image will be built from directory";
                 }
-                //add platform to ContainerModel
+                //add platform
                 if (!(jsonContainer["platform"] is null))
                 {
                     container.Platform = jsonContainer["platform"].Value<string>();
@@ -125,11 +138,22 @@ namespace DockerComposeMVC
         }
 
 
-        public static bool RemoveComposeTemplate()
+        public static bool RemoveComposeTemplate(string FileName)
         { return true; }
-        public static List<ICompositeService> GetComposeReadyFiles() { return new List<ICompositeService>(); }
+        public static Dictionary<string, ICompositeService> LoadComposeReadyFiles()
+        {
+            var config = Configuration.GetConfig();
+            var serviceDict = new Dictionary<string, ICompositeService>();
+            var templatePath = Path.Combine(Directory.GetCurrentDirectory(), config.GetValueOrDefault("ComposeTemplate", @"data\ready"));
+            string[] fileNames = Directory.GetFiles(templatePath);
+
+            foreach (var FileName in fileNames)
+            {
+                
+            }
+        }
+        public static bool AddComposeReadyFile(string content, string FileName) { return true; }
         public static bool RemoveComposeReadyFile(string FileName) { return true; }
-        public static bool BuildFromTemplate() { return true; }
         public static Dictionary<string, string> GetParamsListFromFile(string FileName) { return new Dictionary<string, string>(); }
     }
 }

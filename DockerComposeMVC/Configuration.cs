@@ -10,9 +10,7 @@ namespace DockerComposeMVC
     public static class Configuration
     {
         public static string ConfigFilePath = Path.Combine(Directory.GetCurrentDirectory(), "config\\config.json");
-
         public static bool ConfigLoaded = false;
-
         public static Dictionary<string, string> CurrentConfig = null;
 
         public static bool ReadConfigFile()
