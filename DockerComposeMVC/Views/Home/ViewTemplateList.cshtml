@@ -17,7 +17,7 @@
     @foreach (CompositeModel containers in Model)
     {
         <div class="col-md-6" id="tile">
-            <a href='@Url.Action("TemplateDetails", "Home", new { cFileName = containers.Name })' class="list-group-item">
+            <a href='@Url.Action("TemplateDetails", "Home", new { cName = containers.Name })' class="list-group-item">
                 <h4 class="list-group-item-heading">@containers.Name</h4>
                 @foreach (ContainerModel images in containers.ContainersFromFile)
                 {

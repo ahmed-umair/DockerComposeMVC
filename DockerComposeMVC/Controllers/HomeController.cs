@@ -11,6 +11,7 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Routing;
 
 namespace DockerComposeMVC.Controllers
 {
@@ -99,9 +100,11 @@ namespace DockerComposeMVC.Controllers
             return View(ComposerNew.TemplatesList);
         }
 
-        public IActionResult TemplateDetails()
+        //[Route("{cName}")]
+        public IActionResult TemplateDetails([FromQuery] String cName)
         {
-            return View();
+            ViewData["cFileName"] = cName;
+            return View(ComposerNew.TemplatesList);
         }
 
         public IActionResult StatusDebug()
