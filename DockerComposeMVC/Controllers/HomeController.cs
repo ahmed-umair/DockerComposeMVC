@@ -93,11 +93,11 @@ namespace DockerComposeMVC.Controllers
             //return Ok(new { size, filePath })
         }
 
-        //public IActionResult AddParameters()
-        //{
-        //    var paramsArray = ViewBag.prams;
-        //    return View(paramsArray);
-        //}
+        public IActionResult ViewTemplateList()
+        {
+            ComposerNew.InitializeLists();
+            return View();
+        }
 
         public IActionResult StatusDebug()
         {
