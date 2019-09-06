@@ -154,7 +154,6 @@ namespace DockerComposeMVC.Controllers
                 ViewData["status"] = Composer.GetStatus();
             }
 
-
             return View();
         }
 
