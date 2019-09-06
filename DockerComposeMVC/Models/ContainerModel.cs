@@ -17,14 +17,11 @@ namespace DockerComposeMVC.Models
             var config = container.GetConfiguration();
             this.Id = container.Id;
             this.Name = config.Name;
-            this.Image = config.Image;
+            this.Image = container.Image.Name;
             this.IsWindows = container.IsWindowsContainer;
             this.State = container.State.ToString();
 
-            foreach (var kvPair in config.NetworkSettings.Ports)
-            {
-                PortMappings.Add(kvPair.Key + " : " + kvPair.Value.ToString());
-            }
+           
         }
         public string Id { get; set; }
         public string Name { get; set; }
