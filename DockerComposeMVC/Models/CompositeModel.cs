@@ -11,7 +11,7 @@ namespace DockerComposeMVC.Models
         public string Name { get; set; }
         public string FilePath { get; set; }
         public List<ContainerModel> ContainersFromFile { get; set; }
-        public bool ReadyForExecution { get; set; }
+        public bool IsTemplate { get; set; }
         public ICompositeService Service { get; set; }
 
     }
