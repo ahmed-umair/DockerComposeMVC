@@ -62,14 +62,15 @@ namespace DockerComposeMVC
 
         public static Dictionary<string, string> GetConfig()
         {
-            if (!IsConfigLoaded())
-            {
-                throw new Exception("CONFIG_NOT_SET");
-            }
-            else
-            {
-                return CurrentConfig;
-            }
+            //if (!IsConfigLoaded())
+            //{
+            //    throw new Exception("CONFIG_NOT_SET");
+            //}
+            //else
+            //{
+            //    return CurrentConfig;
+            //}
+            return CurrentConfig;
         }
         public static bool SetConfig(Dictionary<string, string> NewConfig)
         {

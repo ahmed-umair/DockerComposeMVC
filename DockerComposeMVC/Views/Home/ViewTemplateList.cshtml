@@ -3,7 +3,15 @@
     ViewData["Title"] = "Template List";
 }
 
+@model List<CompositeModel>
+
 <h2>Existing Templates</h2>
 
-
+<div>
+    @foreach(CompositeModel containers in Model)
+    {
+    <h4 class="far fa-square">@containers.Name</h4>
+    }
+    
+</div>
 

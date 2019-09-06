@@ -96,7 +96,7 @@ namespace DockerComposeMVC.Controllers
         public IActionResult ViewTemplateList()
         {
             ComposerNew.InitializeLists();
-            return View();
+            return View(ComposerNew.TemplatesList);
         }
 
         public IActionResult StatusDebug()
