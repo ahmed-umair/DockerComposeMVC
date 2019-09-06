@@ -47,7 +47,7 @@ namespace DockerComposeMVC
                 Name = name,
                 FilePath = FileName,
                 ContainersFromFile = JSONtoContainers(json),
-                ReadyForExecution = ready
+                IsTemplate = ready
             };
 
             if (ready)

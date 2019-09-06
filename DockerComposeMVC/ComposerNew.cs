@@ -11,9 +11,9 @@ namespace DockerComposeMVC
 {
     public class ComposerNew
     {
-        private static List<CompositeModel> TemplatesList = new List<CompositeModel>();
-        private static List<CompositeModel> ReadyList = new List<CompositeModel>();
-        private static readonly string BasePath = Path.Combine(Directory.GetCurrentDirectory(), "config");
+        public static List<CompositeModel> TemplatesList = new List<CompositeModel>();
+        public static List<CompositeModel> ReadyList = new List<CompositeModel>();
+        public static readonly string BasePath = Path.Combine(Directory.GetCurrentDirectory(), "config");
 
         public static void InitializeLists()
         {
@@ -23,18 +23,57 @@ namespace DockerComposeMVC
         public static string StartFromTemplate(string ServiceName, Dictionary<string, string> dict) { return "started"; }
         public static string StartFromReady(string ServiceName)
         {
-            var searchResult = ReadyList.Single(service => service.Name == ServiceName);
-            if (!(searchResult.Service.State is ServiceRunningState.Running && searchResult.Service.State is ServiceRunningState.Starting))
+            try
             {
-                Task compose = new Task(() => searchResult.Service.Start());
-                compose.Start();
-                Thread.Sleep(500);
-                return searchResult.Service.State.ToString();
+                var searchResult = ReadyList.Single(service => service.Name == ServiceName);
+                if (!(searchResult.Service.State is ServiceRunningState.Running && searchResult.Service.State is ServiceRunningState.Starting))
+                {
+                    try
+                    {
+                        Task compose = new Task(() => searchResult.Service.Start());
+                        compose.Start();
+                        Thread.Sleep(500);
+                        return searchResult.Service.State.ToString();
+                    }
+                    catch (Exception e)
+                    {
+                        //Log error and stack trace here
+                        return "ERR_FAILED_TO_START";
+                    }
+                }
+                //Log error here
+                return "ERR_ALREADY_STARTED";
             }
-            throw new Exception("ERR_FAILED_TO_START");
+            catch (Exception e)
+            {
+                return "ERR_COMPOSE_FILE_NOT_FOUND";
+            }
         }
-        public static string GetServiceStatus(string ServiceName) { return "status"; }
-        public static List<IContainerService> GetServiceDetails(string ServiceName) { return null; }
+        public static string GetServiceStatus(string ServiceName)
+        {
+            try
+            {
+                var searchResult = ReadyList.Single(service => service.Name == ServiceName);
+                if (!searchResult.IsTemplate)
+                {
+                    return "ERR_TEMPLATE_NOT_EXECUTABLE";
+                }
+                else
+                {
+                    return searchResult.Service.State.ToString();
+                }
+            }
+            catch
+            {
+                return "ERR_COMPOSE_FILE_NOT_FOUND";
+            }
+        }
+        public static CompositeModel GetSingleCompositeDetail(string ServiceName, bool IsTemplate)
+        {
+            var searchResult = ReadyList.Single(service => service.Name == ServiceName);
+            return searchResult;
+
+        }
         public static string StopService(string ServiceName) { return "stopped"; }
 
     }
