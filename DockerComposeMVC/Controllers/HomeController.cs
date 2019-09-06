@@ -99,6 +99,11 @@ namespace DockerComposeMVC.Controllers
             return View(ComposerNew.TemplatesList);
         }
 
+        public IActionResult TemplateDetails()
+        {
+            return View();
+        }
+
         public IActionResult StatusDebug()
         {
             return Ok(Composer.GetStatus() + " " + Composer.GetStatus().Length);
