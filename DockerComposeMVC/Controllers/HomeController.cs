@@ -206,6 +206,23 @@ namespace DockerComposeMVC.Controllers
             return View("SubmitNew");
         }
 
+        public IActionResult DebugListReady() {
+            return Ok(ComposerNew.ReadyList);
+        }
+
+        public IActionResult DebugStart([FromQuery] string FileName)
+        {
+            return Ok(ComposerNew.StartService(FileName));
+        }
+
+        public IActionResult DebugStatus([FromQuery] string FileName){
+            return Ok(ComposerNew.GetServiceStatus(FileName));
+        }
+
+        public IActionResult DebugStop([FromQuery] string FileName)
+        {
+            return Ok(ComposerNew.StopService(FileName));
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

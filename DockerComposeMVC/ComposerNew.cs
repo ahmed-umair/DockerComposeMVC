@@ -1,6 +1,5 @@
 ﻿using DockerComposeMVC.Models;
 using Ductus.FluentDocker.Services;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,15 +14,14 @@ namespace DockerComposeMVC
     {
         public static List<CompositeModel> TemplatesList = new List<CompositeModel>();
         public static List<CompositeModel> ReadyList = new List<CompositeModel>();
-        public static readonly string BasePath = Path.Combine(Directory.GetCurrentDirectory(), "config");
-        
+        public static readonly string BasePath = Path.Combine(Directory.GetCurrentDirectory(), "data");
+
         public static void InitializeLists()
         {
-            TemplatesList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\templates"), false);
-            ReadyList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\ready"), true);
+            TemplatesList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\templates"), true);
+            ReadyList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\ready"), false);
         }
-        public static string StartFromTemplate(string ServiceName, Dictionary<string, string> dict) { return "started"; }
-        public static string StartFromReady(string ServiceName)
+        public static string StartService(string ServiceName)
         {
             try
             {
@@ -56,7 +54,7 @@ namespace DockerComposeMVC
             try
             {
                 var searchResult = ReadyList.Single(service => service.Name == ServiceName);
-                if (!searchResult.IsTemplate)
+                if (searchResult.IsTemplate)
                 {
                     return "ERR_TEMPLATE_NOT_EXECUTABLE";
                 }
@@ -70,21 +68,20 @@ namespace DockerComposeMVC
                 return "ERR_COMPOSE_FILE_NOT_FOUND";
             }
         }
-        ///CATCH NOT FOUND EXCEPTION WHEREVER THIS IS CALLED
-        public static CompositeModel GetSingleCompositeDetail(string ServiceName, bool IsTemplate)
-        {
-            CompositeModel searchResult;
-            if (!IsTemplate)
-            {
-                searchResult = ReadyList.Single(service => service.Name == ServiceName);
-            }
-            else
-            {
-                searchResult = TemplatesList.Single(service => service.Name == ServiceName);
-            }
 
-            return searchResult;
+        public static List<CompositeModel> GetRunningCompositeModels()
+        {
+            try
+            {
+                var searchResult = ReadyList.FindAll(service => service.Service.State == ServiceRunningState.Running);
+                return searchResult;
+            }
+            catch
+            {
+                return new List<CompositeModel>();
+            }
         }
+
         public static string StopService(string ServiceName)
         {
             try
@@ -100,21 +97,32 @@ namespace DockerComposeMVC
             return "stopped";
         }
 
-        public static async Task<string> FilePathAsync (IEnumerable<IFormFile> file)
+        ///CATCH NOT FOUND EXCEPTION WHEREVER THIS IS CALLED
+        public static CompositeModel GetSingleCompositeDetail(string ServiceName, bool IsTemplate)
         {
-            var filePath = Path.GetTempFileName();
-
-            foreach (var formFile in file)
+            CompositeModel searchResult;
+            if (!IsTemplate)
             {
-                if (formFile.Length > 0)
-                {
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await formFile.CopyToAsync(stream);
-                    }
-                }
+                searchResult = ReadyList.Single(service => service.Name == ServiceName);
             }
-            return filePath;
+            else
+            {
+                searchResult = TemplatesList.Single(service => service.Name == ServiceName);
+            }
+
+            return searchResult;
+        }
+
+        public static string ReplaceParams(string content, Dictionary<string, string> paramsList)
+        {
+            var keys = paramsList.Keys;
+
+            foreach (string key in keys)
+            {
+                content = content.Replace("${{" + key + "}}", paramsList.GetValueOrDefault(key));
+            }
+
+            return content;
         }
 
         public static String[] ExtractParameters(String contents, out bool result)
@@ -128,15 +136,6 @@ namespace DockerComposeMVC
                 result = true;
             }
 
-            String[] parameters = output.Split(';');
-            return (parameters);
-        }
-
-        public static String[] ExtractParameters(String contents)
-        {
-           String output = String.Join(";", Regex.Matches(contents, @"\${{(.+?)}}")
-                                                .Cast<Match>()
-                                                .Select(m => m.Groups[1].Value));
             String[] parameters = output.Split(';');
             return (parameters);
         }
