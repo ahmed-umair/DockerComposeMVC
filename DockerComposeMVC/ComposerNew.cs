@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -96,6 +97,21 @@ namespace DockerComposeMVC
                 return "ERR_COMPOSE_FILE_NOT_FOUND";
             }
             return "stopped";
+        }
+
+        public static String[] ExtractParameters(String contents, out bool result)
+        {
+            result = false;
+            String output = String.Join(";", Regex.Matches(contents, @"\${{(.+?)}}")
+                                                .Cast<Match>()
+                                                .Select(m => m.Groups[1].Value));
+            if (!string.IsNullOrEmpty(output))
+            {
+                result = true;
+            }
+
+            String[] parameters = output.Split(';');
+            return (parameters);
         }
     }
 }

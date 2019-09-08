@@ -72,15 +72,12 @@ namespace DockerComposeMVC.Controllers
             }
 
             StringValues filename;
+            bool result = false;
             string contents = System.IO.File.ReadAllText(filePath);
             form.TryGetValue("destFileName", out filename);
-
-            String output = String.Join(";", Regex.Matches(contents, @"\${{(.+?)}}")
-                                                .Cast<Match>()
-                                                .Select(m => m.Groups[1].Value));
-            String[] parameters = output.Split(';');
-
-            if (string.IsNullOrEmpty(output))
+            String[] parameters = ComposerNew.ExtractParameters(contents, out result);
+            
+            if (result == false)
             {
                 return View("AddParameters");
             }
@@ -96,12 +93,11 @@ namespace DockerComposeMVC.Controllers
             ViewData["fileString"] = contents;
             ViewData["fileName"] = filename;
             return View("AddParameters", parameters);
-            //return Ok(new { size, filePath })
         }
 
+        
         public IActionResult ViewTemplateList()
         {
-            ComposerNew.InitializeLists();
             return View(ComposerNew.TemplatesList);
         }
 
@@ -109,7 +105,8 @@ namespace DockerComposeMVC.Controllers
         public IActionResult TemplateDetails([FromQuery] String cName)
         {
             ViewData["cFileName"] = cName;
-            return View(ComposerNew.TemplatesList);
+            CompositeModel composeFileDetails =  ComposerNew.GetSingleCompositeDetail(cName,true);
+            return View(composeFileDetails);
         }
 
         public IActionResult StatusDebug()
