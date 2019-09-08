@@ -1,5 +1,6 @@
 ﻿using DockerComposeMVC.Models;
 using Ductus.FluentDocker.Services;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -125,6 +126,24 @@ namespace DockerComposeMVC
             return content;
         }
 
+        public static async Task<string> FilePathAsync (IEnumerable<IFormFile>  file)
+        {
+            //full path to file in temp location
+            var filePath = Path.GetTempFileName();
+
+            foreach (var formFile in file)
+            {
+                if (formFile.Length > 0)
+                {
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+                }
+            }
+            return filePath;
+        }
+
         public static String[] ExtractParameters(String contents, out bool result)
         {
             result = false;
@@ -136,6 +155,16 @@ namespace DockerComposeMVC
                 result = true;
             }
 
+            String[] parameters = output.Split(';');
+            return (parameters);
+        }
+
+        public static String[] ExtractParameters(String contents)
+        {
+            String output = String.Join(";", Regex.Matches(contents, @"\${{(.+?)}}")
+                                                .Cast<Match>()
+                                                .Select(m => m.Groups[1].Value));
+            
             String[] parameters = output.Split(';');
             return (parameters);
         }

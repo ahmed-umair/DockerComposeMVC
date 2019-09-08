@@ -10,8 +10,8 @@
 
 <div class="row justify-content-end">
     @*<a class="btn btn-success mx-3" href="@Url.Action("AddParamsInTemplate", "Home", new { cName = @ViewData["cFileName"] })">Run This Config File</a>*@
-    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
-        Add Parameters and Run this Config File
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+        Run from this template
     </button>
 </div>
 
@@ -38,7 +38,10 @@
                         {
                             foreach (string ports in container.PortMappings)
                             {
-                                <li><b>Ports:</b> <span>@ports</span></li>
+                                String[] pairs = ports.Split(":");
+                                String parameter = pairs[0].Substring(3, pairs[0].Length - 5);
+                                <li><b>Ports:</b> <span style="background-color: forestgreen; color: white; border-radius: 10px; padding: 0 5px 0 5px;">
+                                    @parameter</span><span> : @pairs[1]</span></li>
                             }
                         }
 
