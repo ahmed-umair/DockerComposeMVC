@@ -21,7 +21,7 @@ namespace DockerComposeMVC
             TemplatesList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\templates"), true);
             ReadyList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\ready"), false);
         }
-        public static string StartFromReady(string ServiceName)
+        public static string StartService(string ServiceName)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace DockerComposeMVC
             try
             {
                 var searchResult = ReadyList.Single(service => service.Name == ServiceName);
-                if (!searchResult.IsTemplate)
+                if (searchResult.IsTemplate)
                 {
                     return "ERR_TEMPLATE_NOT_EXECUTABLE";
                 }
