@@ -18,10 +18,15 @@ namespace DockerComposeMVC.Controllers
     {
         public IActionResult Index()
         {
-            
             return View();
         }
-
+        
+        public IActionResult StartComposeReady() {
+            
+            //ComposerNew.InitializeLists();
+            var composite = ComposerNew.GetSingleCompositeDetail("compose-destination.yml", false);
+            return Ok(composite);
+        }
         public IActionResult Status()
         {
 
@@ -53,7 +58,7 @@ namespace DockerComposeMVC.Controllers
         {
             //full path to file in temp location
             var filePath = Path.GetTempFileName();
-            
+
             foreach (var formFile in file)
             {
                 if (formFile.Length > 0)
@@ -73,7 +78,7 @@ namespace DockerComposeMVC.Controllers
                                                 .Cast<Match>()
                                                 .Select(m => m.Groups[1].Value));
             String[] parameters = output.Split(';');
-          
+
             if (string.IsNullOrEmpty(output))
             {
                 return View("AddParameters");
@@ -81,7 +86,7 @@ namespace DockerComposeMVC.Controllers
 
             try
             {
-                System.IO.File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "temp/" + filename + ".yaml"), contents);  
+                System.IO.File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "temp/" + filename + ".yaml"), contents);
             }
             catch (Exception e)
             {
@@ -124,7 +129,7 @@ namespace DockerComposeMVC.Controllers
             }
             return View();
         }
-                
+
         public IActionResult UploadCompose()
         {
             return View();
@@ -140,7 +145,6 @@ namespace DockerComposeMVC.Controllers
                 ViewData["message"] = "A multi-container application is already running. Please stop it before attempting to start another one!";
                 return View();
             }
-
 
             string finalComposeString = ComposeFileOperations.ReplaceParams(ComposeFileOperations.ReadFile(), dict);
             if (ComposeFileOperations.WriteToFile(finalComposeString))
@@ -167,7 +171,7 @@ namespace DockerComposeMVC.Controllers
                 ViewData["message"] = "A multi-container application is already running. Please stop it before attempting to start another one!";
                 return View();
             }
-           
+
             string finalComposeString = ComposeFileOperations.ReplaceParams(fileString, dict);
             if (ComposeFileOperations.WriteToFile(finalComposeString))
             {
@@ -179,7 +183,7 @@ namespace DockerComposeMVC.Controllers
                 ViewData["message"] = "Your application has been started. You will be redirected to the status page in a few seconds.";
                 ViewData["status"] = Composer.GetStatus();
             }
-            
+
             return View("SubmitNew");
         }
 

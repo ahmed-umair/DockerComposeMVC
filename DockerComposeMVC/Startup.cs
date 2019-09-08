@@ -17,6 +17,7 @@ namespace DockerComposeMVC
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            ComposerNew.InitializeLists();
         }
 
         public IConfiguration Configuration { get; }

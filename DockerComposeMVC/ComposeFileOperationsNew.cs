@@ -73,6 +73,7 @@ namespace DockerComposeMVC
             foreach (var service in services)
             {
                 var container = new ContainerModel { Name = service.Key };
+                
                 var jsonContainer = (JObject)service.Value;
 
                 //add image to ContainerModel
@@ -106,13 +107,15 @@ namespace DockerComposeMVC
                         container.EnvironmentVariables = jsonContainer["environment"].ToObject<Dictionary<string, string>>();
                     }
                 }
+                
+
 
                 //add port mappings
                 if (!(jsonContainer["ports"] is null))
                 {
                     container.PortMappings = jsonContainer["ports"].ToObject<List<string>>();
                 }
-
+                
                 //add volume bindings
                 if (!(jsonContainer["volumes"] is null))
                 {

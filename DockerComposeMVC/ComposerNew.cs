@@ -68,13 +68,34 @@ namespace DockerComposeMVC
                 return "ERR_COMPOSE_FILE_NOT_FOUND";
             }
         }
+        ///CATCH NOT FOUND EXCEPTION WHEREVER THIS IS CALLED
         public static CompositeModel GetSingleCompositeDetail(string ServiceName, bool IsTemplate)
         {
-            var searchResult = ReadyList.Single(service => service.Name == ServiceName);
+            CompositeModel searchResult;
+            if (!IsTemplate)
+            {
+                searchResult = ReadyList.Single(service => service.Name == ServiceName);
+            }
+            else
+            {
+                searchResult = TemplatesList.Single(service => service.Name == ServiceName);
+            }
+
             return searchResult;
-
         }
-        public static string StopService(string ServiceName) { return "stopped"; }
-
+        public static string StopService(string ServiceName)
+        {
+            try
+            {
+                var searchResult = ReadyList.Single(service => service.Name == ServiceName);
+                searchResult.Service.Stop();
+                //ResetContainerStatus(searchResult.Service);
+            }
+            catch
+            {
+                return "ERR_COMPOSE_FILE_NOT_FOUND";
+            }
+            return "stopped";
+        }
     }
 }

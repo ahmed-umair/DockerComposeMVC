@@ -21,16 +21,18 @@ namespace DockerComposeMVC.Models
             this.IsWindows = container.IsWindowsContainer;
             this.State = container.State.ToString();
 
-           
         }
         public string Id { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
         public string State { get; set; }
         public bool IsWindows { get; set; }
+        
         public List<string> PortMappings { get; set; }
+        ///Check for type: could be List<string> or Dictionary<string,string> depending on how it's defined in the YAML file
         public Object EnvironmentVariables { get; set; }
         public string Platform { get; set; }
+        ///Check for type: could be List<Dictionary<string,string>> or List<string> depending on  how it's defined in the YAML file
         public Object Volumes { get; set; }
     }
 }
