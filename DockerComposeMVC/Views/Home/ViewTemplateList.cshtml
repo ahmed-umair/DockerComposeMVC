@@ -5,13 +5,30 @@
 
 @model List<CompositeModel>
 
-<h2>Existing Templates</h2>
+<style>
+    a{text-decoration: none; color: black;}
+    a:hover{text-decoration: none; background-color: lightgrey;}
+    #tile{margin-bottom:25px;}
+</style>
 
-<div>
-    @foreach(CompositeModel containers in Model)
+<h2>Existing Templates</h2><hr/>
+
+<div class="row">
+    @foreach (CompositeModel containers in Model)
     {
-    <h4 class="far fa-square">@containers.Name</h4>
+        <div class="col-md-6" id="tile">
+            <a href='@Url.Action("TemplateDetails", "Home", new { cName = containers.Name })' class="list-group-item">
+                <h4 class="list-group-item-heading">@containers.Name</h4>
+                @foreach (ContainerModel images in containers.ContainersFromFile)
+                {
+                    <h6 class="list-group-item-text">@images.Name : </h6><h7>@images.Image</h7>
+                }
+            </a>
+        </div>   
     }
-    
 </div>
+
+@*<a href='@Url.Action("Create", "Home", new { UserName = ?, Password = ?})'>
+    <input type="submit" value='Submit' />
+</a>*@
 
