@@ -1,5 +1,6 @@
 ﻿using DockerComposeMVC.Models;
 using Ductus.FluentDocker.Services;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,7 @@ namespace DockerComposeMVC
         public static List<CompositeModel> TemplatesList = new List<CompositeModel>();
         public static List<CompositeModel> ReadyList = new List<CompositeModel>();
         public static readonly string BasePath = Path.Combine(Directory.GetCurrentDirectory(), "config");
-
+        
         public static void InitializeLists()
         {
             TemplatesList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\templates"), false);
@@ -99,6 +100,23 @@ namespace DockerComposeMVC
             return "stopped";
         }
 
+        public static async Task<string> FilePathAsync (IEnumerable<IFormFile> file)
+        {
+            var filePath = Path.GetTempFileName();
+
+            foreach (var formFile in file)
+            {
+                if (formFile.Length > 0)
+                {
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+                }
+            }
+            return filePath;
+        }
+
         public static String[] ExtractParameters(String contents, out bool result)
         {
             result = false;
@@ -110,6 +128,15 @@ namespace DockerComposeMVC
                 result = true;
             }
 
+            String[] parameters = output.Split(';');
+            return (parameters);
+        }
+
+        public static String[] ExtractParameters(String contents)
+        {
+           String output = String.Join(";", Regex.Matches(contents, @"\${{(.+?)}}")
+                                                .Cast<Match>()
+                                                .Select(m => m.Groups[1].Value));
             String[] parameters = output.Split(';');
             return (parameters);
         }

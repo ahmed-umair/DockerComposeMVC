@@ -9,7 +9,10 @@
 <h5>File Name: <span>@ViewData["cFileName"]</span></h5><hr />
 
 <div class="row justify-content-end">
-    <a class="btn btn-success mx-3" href="@Url.Action("AddParamsInTemplate", "Home", new { cName = @ViewData["cFileName"] })">Run This Config File</a>
+    @*<a class="btn btn-success mx-3" href="@Url.Action("AddParamsInTemplate", "Home", new { cName = @ViewData["cFileName"] })">Run This Config File</a>*@
+    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+        Add Parameters and Run this Config File
+    </button>
 </div>
 
 <div class="row">
@@ -26,8 +29,8 @@
                             <b>OS Type:</b> <span>
                                 @if (container.IsWindows)
                                 {<text>Windows</text> }
-                            else
-                            {<text>Linux</text>}
+                                else
+                                {<text>Linux</text>}
                             </span>
                         </li>
 
@@ -46,7 +49,7 @@
                                 <li>
                                     <b>Environment Variables : </b>
                                     <ul>
-                                        @foreach (string pair in (List<string>) container.EnvironmentVariables)
+                                        @foreach (string pair in (List<string>)container.EnvironmentVariables)
                                         {
                                             <li>@pair</li>
                                         }
@@ -75,7 +78,7 @@
                                 <li>
                                     <b>Volumes : </b>
                                     <ul>
-                                        @foreach (string val in (List<string>) container.Volumes)
+                                        @foreach (string val in (List<string>)container.Volumes)
                                         {
                                             string[] pairs = val.Split(":");
                                             <li>@pairs[0] : @pairs[1]</li>
@@ -88,13 +91,13 @@
                                 <li>
                                     <b>Volumes : </b>
                                     <ul>
-                                        @foreach (Dictionary<string, string>  pair in (List<Dictionary<string, string>>)container.Volumes)
+                                        @foreach (Dictionary<string, string> pair in (List<Dictionary<string, string>>)container.Volumes)
                                         {
                                             @foreach (KeyValuePair<string, string> val in (Dictionary<string, string>)pair)
                                             {
                                                 <li>@val.Key : @val.Value</li>
                                             }
-                                         }
+                                        }
                                     </ul>
                                 </li>
 
@@ -107,3 +110,43 @@
         }
     </div>
 </div>
+
+
+@{String[] parameters = (String [])ViewData["params"]; }
+
+
+<!-- Add Parameters Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Parameters for @ViewData["cFileName"]<span>.yaml</span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="paramsForm" action="@Url.Action("CreateCustom")" method="POST">
+                        @{ foreach (string item in parameters)
+                            {
+                                <div class="row">
+
+                                    <div class="form-group col-md-6">
+                                        <label for="my-input">@item</label>
+                                        <input id="my-input" class="form-control" type="text" name="@item">
+                                    </div>
+
+                                </div>
+                            }
+                        }
+                        <input type="hidden" name="fileString" value="@ViewData["fileString"]" />
+                        <button type="submit" class="btn btn-success">Verify</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>

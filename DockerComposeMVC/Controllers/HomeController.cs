@@ -58,19 +58,19 @@ namespace DockerComposeMVC.Controllers
         public async Task<IActionResult> UploadFiles(IEnumerable<IFormFile> file, IFormCollection form)
         {
             //full path to file in temp location
-            var filePath = Path.GetTempFileName();
+            //var filePath = Path.GetTempFileName();
 
-            foreach (var formFile in file)
-            {
-                if (formFile.Length > 0)
-                {
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await formFile.CopyToAsync(stream);
-                    }
-                }
-            }
-
+            //foreach (var formFile in file)
+            //{
+            //    if (formFile.Length > 0)
+            //    {
+            //        using (var stream = new FileStream(filePath, FileMode.Create))
+            //        {
+            //            await formFile.CopyToAsync(stream);
+            //        }
+            //    }
+            //}
+            String filePath = await ComposerNew.FilePathAsync(file);
             StringValues filename;
             bool result = false;
             string contents = System.IO.File.ReadAllText(filePath);
@@ -106,7 +106,21 @@ namespace DockerComposeMVC.Controllers
         {
             ViewData["cFileName"] = cName;
             CompositeModel composeFileDetails =  ComposerNew.GetSingleCompositeDetail(cName,true);
+            String basePath = Path.Combine(Directory.GetCurrentDirectory(), "data/templates/" + cName);
+            String contents = System.IO.File.ReadAllText(basePath);
+            String[] parameters = ComposerNew.ExtractParameters(contents);
+            foreach(String a in parameters)
+            {
+                Debug.WriteLine(a);
+            }
+            Debug.WriteLine("------------------");
+            ViewData["params"] = parameters;
             return View(composeFileDetails);
+        }
+
+        public IActionResult AddParamsInTemplate([FromQuery] String cName)
+        {
+            return Ok();
         }
 
         public IActionResult StatusDebug()
