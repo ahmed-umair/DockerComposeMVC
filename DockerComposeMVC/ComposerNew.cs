@@ -13,12 +13,12 @@ namespace DockerComposeMVC
     {
         public static List<CompositeModel> TemplatesList = new List<CompositeModel>();
         public static List<CompositeModel> ReadyList = new List<CompositeModel>();
-        public static readonly string BasePath = Path.Combine(Directory.GetCurrentDirectory(), "config");
+        public static readonly string BasePath = Path.Combine(Directory.GetCurrentDirectory(), "data");
 
         public static void InitializeLists()
         {
-            TemplatesList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\templates"), false);
-            ReadyList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\ready"), true);
+            TemplatesList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\templates"), true);
+            ReadyList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\ready"), false);
         }
         public static string StartFromTemplate(string ServiceName, Dictionary<string, string> dict) { return "started"; }
         public static string StartFromReady(string ServiceName)
@@ -68,6 +68,22 @@ namespace DockerComposeMVC
                 return "ERR_COMPOSE_FILE_NOT_FOUND";
             }
         }
+        
+        public static string StopService(string ServiceName)
+        {
+            try
+            {
+                var searchResult = ReadyList.Single(service => service.Name == ServiceName);
+                searchResult.Service.Stop();
+                //ResetContainerStatus(searchResult.Service);
+            }
+            catch
+            {
+                return "ERR_COMPOSE_FILE_NOT_FOUND";
+            }
+            return "stopped";
+        }
+
         ///CATCH NOT FOUND EXCEPTION WHEREVER THIS IS CALLED
         public static CompositeModel GetSingleCompositeDetail(string ServiceName, bool IsTemplate)
         {
@@ -83,19 +99,17 @@ namespace DockerComposeMVC
 
             return searchResult;
         }
-        public static string StopService(string ServiceName)
+
+        public static string ReplaceParams(string content, Dictionary<string, string> paramsList)
         {
-            try
+            var keys = paramsList.Keys;
+
+            foreach (string key in keys)
             {
-                var searchResult = ReadyList.Single(service => service.Name == ServiceName);
-                searchResult.Service.Stop();
-                //ResetContainerStatus(searchResult.Service);
+                content = content.Replace("${{" + key + "}}", paramsList.GetValueOrDefault(key));
             }
-            catch
-            {
-                return "ERR_COMPOSE_FILE_NOT_FOUND";
-            }
-            return "stopped";
+
+            return content;
         }
     }
 }
