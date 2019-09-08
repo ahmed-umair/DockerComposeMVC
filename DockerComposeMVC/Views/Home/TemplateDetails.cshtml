@@ -6,5 +6,104 @@
 @model CompositeModel
 
 <h2>Template Details</h2>
-<h4>File Name: <span>@ViewData["cFileName"]</span></h4>
+<h5>File Name: <span>@ViewData["cFileName"]</span></h5><hr />
 
+<div class="row justify-content-end">
+    <a class="btn btn-success mx-3" href="@Url.Action("AddParamsInTemplate", "Home", new { cName = @ViewData["cFileName"] })">Run This Config File</a>
+</div>
+
+<div class="row">
+    <div class="grid-container">
+        @foreach (ContainerModel container in Model.ContainersFromFile)
+        {
+            <div class="card border-success mx-3 my-3">
+                <div class="card-header font-weight-bold">@container.Name</div>
+                <div class="card-body">
+                    <ul>
+                        <li><b>Image:</b> <span>@container.Image</span></li>
+
+                        <li>
+                            <b>OS Type:</b> <span>
+                                @if (container.IsWindows)
+                                {<text>Windows</text> }
+                            else
+                            {<text>Linux</text>}
+                            </span>
+                        </li>
+
+                        @if (container.PortMappings != null)
+                        {
+                            foreach (string ports in container.PortMappings)
+                            {
+                                <li><b>Ports:</b> <span>@ports</span></li>
+                            }
+                        }
+
+                        @if (container.EnvironmentVariables != null)
+                        {
+                            if (container.EnvironmentVariables is List<string>)
+                            {
+                                <li>
+                                    <b>Environment Variables : </b>
+                                    <ul>
+                                        @foreach (string pair in (List<string>) container.EnvironmentVariables)
+                                        {
+                                            <li>@pair</li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <b>Environment Variables : </b>
+                                    <ul>
+                                        @foreach (KeyValuePair<string, string> pair in (Dictionary<string, string>)container.EnvironmentVariables)
+                                        {
+                                            <li>@pair.Key : @pair.Value</li>
+                                        }
+                                    </ul>
+                                </li>
+
+                            }
+                        }
+
+                        @if (container.Volumes != null)
+                        {
+                            if (container.Volumes is List<string>)
+                            {
+                                <li>
+                                    <b>Volumes : </b>
+                                    <ul>
+                                        @foreach (string val in (List<string>) container.Volumes)
+                                        {
+                                            string[] pairs = val.Split(":");
+                                            <li>@pairs[0] : @pairs[1]</li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <b>Volumes : </b>
+                                    <ul>
+                                        @foreach (Dictionary<string, string>  pair in (List<Dictionary<string, string>>)container.Volumes)
+                                        {
+                                            @foreach (KeyValuePair<string, string> val in (Dictionary<string, string>)pair)
+                                            {
+                                                <li>@val.Key : @val.Value</li>
+                                            }
+                                         }
+                                    </ul>
+                                </li>
+
+                            }
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+</div>
