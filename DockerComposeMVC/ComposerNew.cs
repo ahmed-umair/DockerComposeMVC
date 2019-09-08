@@ -21,7 +21,6 @@ namespace DockerComposeMVC
             TemplatesList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\templates"), true);
             ReadyList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\ready"), false);
         }
-        public static string StartFromTemplate(string ServiceName, Dictionary<string, string> dict) { return "started"; }
         public static string StartFromReady(string ServiceName)
         {
             try
@@ -69,7 +68,20 @@ namespace DockerComposeMVC
                 return "ERR_COMPOSE_FILE_NOT_FOUND";
             }
         }
-        
+
+        public static List<CompositeModel> GetRunningCompositeModels()
+        {
+            try
+            {
+                var searchResult = ReadyList.FindAll(service => service.Service.State == ServiceRunningState.Running);
+                return searchResult;
+            }
+            catch
+            {
+                return new List<CompositeModel>();
+            }
+        }
+
         public static string StopService(string ServiceName)
         {
             try

@@ -198,6 +198,10 @@ namespace DockerComposeMVC
             try
             {
                 var searchResult = ComposerNew.ReadyList.Single(service => service.Name == FileName);
+                if(!(searchResult.Service.State is ServiceRunningState.Stopped))
+                {
+                    throw new Exception("ERR_CANNOT_DELETE_RUNNING_COMPOSE_FILE");
+                }
                 ComposerNew.ReadyList.Remove(searchResult);
                 return true;
             }
