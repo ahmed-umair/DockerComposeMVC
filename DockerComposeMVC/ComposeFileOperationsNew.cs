@@ -219,5 +219,20 @@ namespace DockerComposeMVC
                 return false;
             }
         }
+
+        public static bool WriteToReady(string contents, string templateName, string instanceName)
+        {
+            try
+            {
+                File.WriteAllText(Path.GetFullPath(Directory.GetCurrentDirectory() + @"\data\ready\" + fileName + System.DateTime.Now), contents);
+                return true;
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+
+            return false;
+        }
     }
 }

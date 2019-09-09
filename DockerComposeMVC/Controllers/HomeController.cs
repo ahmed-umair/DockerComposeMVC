@@ -175,8 +175,9 @@ namespace DockerComposeMVC.Controllers
                 ViewData["message"] = "A multi-container application is already running. Please stop it before attempting to start another one!";
                 return View();
             }
-            String basePath = Path.Combine(Directory.GetCurrentDirectory(), "temp/" + fileName);
-            String fileString = System.IO.File.ReadAllText(basePath);
+            String tempPath = Path.Combine(Directory.GetCurrentDirectory(), "temp/" + fileName);
+            String fileString = System.IO.File.ReadAllText(tempPath);
+
             string finalComposeString = ComposerNew.ReplaceParams(fileString, dict);
             if (ComposeFileOperations.WriteToFile(finalComposeString))
             {
