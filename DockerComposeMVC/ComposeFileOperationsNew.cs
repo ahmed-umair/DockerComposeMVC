@@ -226,6 +226,7 @@ namespace DockerComposeMVC
             {
                 string filename = templateName + "_" + instanceName + "_" + System.DateTime.Now + ".yml";
                 File.WriteAllText(Path.GetFullPath(Directory.GetCurrentDirectory() + @"\data\ready\" + filename), contents);
+                AddToReadyList(filename);
                 return filename;
             }
             catch (Exception e)

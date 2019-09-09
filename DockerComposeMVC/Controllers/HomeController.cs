@@ -181,9 +181,15 @@ namespace DockerComposeMVC.Controllers
             {
                 verificationResult = ComposerNew.VerifyContainer(filename);
             }
+
             if (!verificationResult)
             {
                 ComposeFileOperationsNew.RemoveFileFromReadyFolder(filename);
+                ComposeFileOperationsNew.RemoveFromReadyList(filename);
+            }
+            else
+            {
+                ComposeFileOperationsNew.AddComposeTemplateToList(filename);
             }
 
             return View("SubmitNew", verificationResult);
