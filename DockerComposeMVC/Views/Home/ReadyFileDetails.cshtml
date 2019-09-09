@@ -8,7 +8,7 @@
 <h2>Ready Compose File Details</h2>
 <h5>File Name: <span>@ViewData["cFileName"]</span></h5><hr />
 
-<a class="btn btn-success" style="margin-left:85%" href="@Url.Action("AddParamsInTemplate", "Home", new { cName = @ViewData["cFileName"] })">Run This Config File</a>
+<a class="btn btn-success" style="margin-left:85%" href="@Url.Action("RunComposeFile", "Home", new { cName = @ViewData["cFileName"] })">Run This Config File</a>
     
 <div class="row">
     <div class="grid-container">

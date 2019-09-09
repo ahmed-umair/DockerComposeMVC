@@ -134,6 +134,11 @@ namespace DockerComposeMVC.Controllers
             return Ok();
         }
 
+        public IActionResult RunningReadyFiles()
+        {
+            return View();
+        }
+
         public IActionResult StatusDebug()
         {
             return Ok(Composer.GetStatus() + " " + Composer.GetStatus().Length);
@@ -232,6 +237,21 @@ namespace DockerComposeMVC.Controllers
             catch (Exception e)
             {
                 return NotFound("ERR_NO_SUCH_COMPOSE_FILE_FOUND: " + FileName);
+            }
+
+        }
+
+        public IActionResult RunComposeFile([FromQuery] string cName)
+        {
+            try
+            {
+                string result = ComposerNew.StartService(cName);
+                ViewData["status"] = result;
+                return View();
+            }
+            catch (Exception e)
+            {
+                return NotFound("ERR_NO_SUCH_COMPOSE_FILE_FOUND: " + cName);
             }
 
         }

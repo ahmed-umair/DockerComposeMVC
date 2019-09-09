@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "RunComposeFile";
+}
+
+<div style="text-align:center">
+     <h1>Please Wait</h1>
+    <h4>Installing Necessary Files</h4>
+
+    <div class="spinner-border text-success" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+
+    <h4>@ViewData["status"]</h4>
+</div>
+
+<script>window.setTimeout(function () {
+        window.location.href = 'your URL';
+    }, 4000);</script>
