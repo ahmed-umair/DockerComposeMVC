@@ -184,7 +184,7 @@ namespace DockerComposeMVC
             }
         }
 
-        public static bool AddComposeReadyFile(string FileName)
+        public static bool AddToReadyList(string FileName)
         {
             try
             {
@@ -202,7 +202,7 @@ namespace DockerComposeMVC
                 return false;
             }
         }
-        public static bool RemoveComposeReadyFile(string FileName)
+        public static bool RemoveFromReadyList(string FileName)
         {
             try
             {
@@ -220,19 +220,37 @@ namespace DockerComposeMVC
             }
         }
 
-        public static bool WriteToReady(string contents, string templateName, string instanceName)
+        public static string WriteFileToReadyFolder(string contents, string templateName, string instanceName)
         {
             try
             {
-                File.WriteAllText(Path.GetFullPath(Directory.GetCurrentDirectory() + @"\data\ready\" + fileName + System.DateTime.Now), contents);
-                return true;
+                string filename = templateName + "_" + instanceName + "_" + System.DateTime.Now + ".yml";
+                File.WriteAllText(Path.GetFullPath(Directory.GetCurrentDirectory() + @"\data\ready\" + filename), contents);
+                return filename;
             }
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine(e.Message);
+                return "ERR_UNABLE_TO_WRITE_TO_FILE";
             }
+        }
 
-            return false;
+        public static bool RemoveFileFromReadyFolder(string FileName)
+        {
+            var RunningList = ComposerNew.GetRunningServices();
+            try
+            {
+                var searchResult = RunningList.Where(service => service.Name == FileName);
+                if (searchResult.Count<CompositeModel>() == 0)
+                {
+                    File.Delete(Path.GetFullPath(Directory.GetCurrentDirectory() + @"\data\ready\" + FileName));
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e) {
+                return false;
+            }
         }
     }
 }

@@ -115,7 +115,7 @@ namespace DockerComposeMVC.Controllers
             String basePath = Path.Combine(Directory.GetCurrentDirectory(), "data/templates/" + cName);
             String contents = System.IO.File.ReadAllText(basePath);
             String[] parameters = ComposerNew.ExtractParameters(contents);
-            
+
             ViewData["params"] = parameters;
             return View(composeFileDetails);
         }
@@ -152,45 +152,41 @@ namespace DockerComposeMVC.Controllers
             {
                 return NotFound("ERR_NO_SUCH_RUNNING_COMPOSE_FILE_FOUND: " + FileName);
             }
-            
+
         }
 
         public IActionResult StatusDebug()
         {
             return Ok(Composer.GetStatus() + " " + Composer.GetStatus().Length);
         }
-        
+
         public IActionResult UploadCompose()
         {
             return View();
         }
-        
+
         [HttpPost]
-        public IActionResult CreateCustom([FromForm] Dictionary<string, string> dict, String fileName)
+        public IActionResult CreateCustom([FromForm] Dictionary<string, string> dict, [FromForm] String templateName, [FromForm] String instanceName)
         {
-            if (Composer.GetStatus() == "Running")
-            {
-                ViewData["Title"] = "Failure";
-                ViewData["success"] = false;
-                ViewData["message"] = "A multi-container application is already running. Please stop it before attempting to start another one!";
-                return View();
-            }
-            String tempPath = Path.Combine(Directory.GetCurrentDirectory(), "temp/" + fileName);
+            
+            String tempPath = Path.Combine(Directory.GetCurrentDirectory(), "temp/" + templateName);
             String fileString = System.IO.File.ReadAllText(tempPath);
 
             string finalComposeString = ComposerNew.ReplaceParams(fileString, dict);
-            if (ComposeFileOperations.WriteToFile(finalComposeString))
-            {
-                Composer.Run("Compose_Application");
-                Thread.Sleep(1000);
+            var filename = ComposeFileOperationsNew.WriteFileToReadyFolder(finalComposeString, templateName, instanceName);
 
-                ViewData["Title"] = "Success";
-                ViewData["success"] = true;
-                ViewData["message"] = "Your application has been started. You will be redirected to the status page in a few seconds.";
-                ViewData["status"] = Composer.GetStatus();
+            ComposeFileOperationsNew.WriteFileToReadyFolder(finalComposeString, templateName, instanceName);
+            bool verificationResult = false;
+            if (filename != "ERR_UNABLE_TO_WRITE_TO_FILE")
+            {
+                verificationResult = ComposerNew.VerifyContainer(filename);
+            }
+            if (!verificationResult)
+            {
+                ComposeFileOperationsNew.RemoveFileFromReadyFolder(filename);
             }
 
-            return View("SubmitNew");
+            return View("SubmitNew", verificationResult);
         }
 
         public IActionResult DebugListReady()
