@@ -2,6 +2,65 @@
 @{
     ViewData["Title"] = "Running Ready Files";
 }
+@model List<CompositeModel>
+
+<style>
+    .container {
+        padding: 2rem 0rem;
+    }
+
+    h4 {
+        margin: 2rem 0rem 1rem;
+    }
+    body {
+        text-align: center;
+    }
+
+    .table-image {
+        td, th
+
+    {
+        vertical-align: middle;
+        
+    }
+
+    }
+</style>
 
 <h2>Running Ready Files</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Configuration File Name</th>
+                        <th>Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @foreach (CompositeModel configFiles in Model)
+                        {
+                    <tr>
+                        <th scope="row">@configFiles.Name</th>
+                        <td>@configFiles.Service.State</td>
+                        <td>
+                            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i>Stop</button>
+                        </td>
+                    </tr>
+                            }
+
+                        
+
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
 

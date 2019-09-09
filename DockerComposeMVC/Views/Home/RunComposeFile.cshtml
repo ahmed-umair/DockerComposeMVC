@@ -11,9 +11,15 @@
         <span class="sr-only">Loading...</span>
     </div>
 
-    <h4>@ViewData["status"]</h4>
+    
+</div><br />
+
+<div style="background-color:lightblue; height:30px;">
+    Page will be redirected automatically. If not press the link to see <a href="@Url.Action("RunningReadyFiles", "Home")">all running composite files</a>
 </div>
 
-<script>window.setTimeout(function () {
-        window.location.href = 'your URL';
-    }, 4000);</script>
+<script>window.setTimeout(function ()
+    {
+        window.location.href = "@Url.Action("RunningReadyFiles", "Home")";
+    }, 5000);
+</script>

@@ -136,7 +136,8 @@ namespace DockerComposeMVC.Controllers
 
         public IActionResult RunningReadyFiles()
         {
-            return View();
+            var RunningList = ComposerNew.GetRunningServices();
+            return View(RunningList);
         }
 
         public IActionResult StatusDebug()
