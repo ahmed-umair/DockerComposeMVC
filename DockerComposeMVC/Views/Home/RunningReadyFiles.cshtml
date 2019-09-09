@@ -12,6 +12,7 @@
     h4 {
         margin: 2rem 0rem 1rem;
     }
+
     body {
         text-align: center;
     }
@@ -21,9 +22,7 @@
 
     {
         vertical-align: middle;
-        
     }
-
     }
 </style>
 
@@ -44,23 +43,20 @@
                     <tr>
                         @foreach (CompositeModel configFiles in Model)
                         {
-                    <tr>
-                        <th scope="row">@configFiles.Name</th>
-                        <td>@configFiles.Service.State</td>
-                        <td>
-                            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i>Stop</button>
-                        </td>
-                    </tr>
-                            }
+                        <tr>
+                            <th scope="row">@configFiles.Name</th>
 
-                        
+                            <td>@configFiles.Service.State</td>
+                            <td>
+                                <a href="@Url.Action("StopRunningFile", "Home" , new { FileName = @configFiles.Name })" class="btn btn-danger"><i class="far fa-trash-alt"></i>Stop</a>
+                            </td>
+                        </tr>
+                    }
 
                     </tbody>
-            </table>
+                </table>
+            </div>
         </div>
     </div>
-</div>
-
-
 
 
