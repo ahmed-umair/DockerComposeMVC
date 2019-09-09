@@ -75,7 +75,7 @@ namespace DockerComposeMVC
             try
             {
                 var searchResult = ReadyList.FindAll(service => (service.Service.State == ServiceRunningState.Running || service.Service.State == ServiceRunningState.Starting));
-                foreach(var composite in searchResult)
+                foreach (var composite in searchResult)
                 {
                     composite.UpdateContainersStatus();
                 }
@@ -118,6 +118,20 @@ namespace DockerComposeMVC
             return searchResult;
         }
 
+        public static bool VerifyContainer(string filename)
+        {
+            ComposeFileOperationsNew.AddToReadyList(filename);
+            ComposerNew.StartService(filename);
+            Thread.Sleep(500);
+
+            ///Check ServiceRunningState enum from the DockerFluent library
+            if (GetServiceStatus(filename) is "Starting" || GetServiceStatus(filename) is "Running")
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static string ReplaceParams(string content, Dictionary<string, string> paramsList)
         {
             var keys = paramsList.Keys;
@@ -130,7 +144,7 @@ namespace DockerComposeMVC
             return content;
         }
 
-        public static async Task<string> FilePathAsync (IEnumerable<IFormFile>  file)
+        public static async Task<string> FilePathAsync(IEnumerable<IFormFile> file)
         {
             //full path to file in temp location
             var filePath = Path.GetTempFileName();
@@ -168,7 +182,7 @@ namespace DockerComposeMVC
             String output = String.Join(";", Regex.Matches(contents, @"\${{(.+?)}}")
                                                 .Cast<Match>()
                                                 .Select(m => m.Groups[1].Value));
-            
+
             String[] parameters = output.Split(';');
             return (parameters);
         }
