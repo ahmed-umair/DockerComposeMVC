@@ -14,5 +14,27 @@ namespace DockerComposeMVC.Models
         public bool IsTemplate { get; set; }
         public ICompositeService Service { get; set; }
 
+        public void UpdateContainersStatus()
+        {
+            foreach (var container in Service.Containers)
+            {
+                try
+                {
+                    var searchResult = ContainersFromFile.Single(ContModel => ContModel.Name == container.Name);
+                    searchResult.UpdateStatusOnRunning(container);
+                }
+                catch
+                {
+                    return;
+                }
+            }
+        }
+
+        public CompositeModel GetUpdatedModel()
+        {
+            UpdateContainersStatus();
+            return this;
+        }
+
     }
 }
