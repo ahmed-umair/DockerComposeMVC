@@ -15,6 +15,14 @@ namespace DockerComposeMVC
 {
     public class ComposeFileOperationsNew
     {
+        /// <summary>
+        /// This method returns a list of CompositeModels from a given folder. It also loads a DockerFluent Service object 
+        /// into the composite model if the IsTemplate parameter is sent as false;
+        /// DEPENDENT ON: LoadSingleCompositeModel()
+        /// </summary>
+        /// <param name="directory">The directory from which to load files from</param>
+        /// <param name="IsTemplate">Indicates if the directory contains template files (with variables that need to be populated) or ready-to-run compose files</param>
+        /// <returns>A list of CompositeModels</returns>
         public static List<CompositeModel> LoadCompositesFromFiles(string directory, bool IsTemplate)
         {
             var config = Configuration.GetConfig();
@@ -29,13 +37,14 @@ namespace DockerComposeMVC
             }
             return list;
         }
+
         /// <summary>
         /// This method parses a given YAML file and returns a CompositeModel based on it. 
         /// It can also create a service according to the params specified in the file
         /// </summary>
         /// <param name="FilePath"></param>
         /// <param name="IsTemplate"></param>
-        /// <returns></returns>
+        /// <returns>A single CompositeModels</returns>
         public static CompositeModel LoadCompositeFromSingleFile(string FilePath, bool IsTemplate)
         {
 
@@ -198,7 +207,7 @@ namespace DockerComposeMVC
             try
             {
                 var searchResult = ComposerNew.ReadyList.Single(service => service.Name == FileName);
-                if(!(searchResult.Service.State is ServiceRunningState.Stopped))
+                if (!(searchResult.Service.State is ServiceRunningState.Stopped))
                 {
                     throw new Exception("ERR_CANNOT_DELETE_RUNNING_COMPOSE_FILE");
                 }

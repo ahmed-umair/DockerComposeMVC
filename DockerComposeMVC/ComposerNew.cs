@@ -70,7 +70,7 @@ namespace DockerComposeMVC
             }
         }
 
-        public static List<CompositeModel> GetRunningCompositeModels()
+        public static List<CompositeModel> GetRunningServices()
         {
             try
             {

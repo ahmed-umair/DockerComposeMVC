@@ -21,9 +21,10 @@ namespace DockerComposeMVC.Controllers
         {
             return View();
         }
-        
-        public IActionResult StartComposeReady() {
-            
+
+        public IActionResult StartComposeReady()
+        {
+
             //ComposerNew.InitializeLists();
             var composite = ComposerNew.GetSingleCompositeDetail("compose-destination.yml", false);
             return Ok(composite);
@@ -76,7 +77,7 @@ namespace DockerComposeMVC.Controllers
             string contents = System.IO.File.ReadAllText(filePath);
             form.TryGetValue("destFileName", out filename);
             String[] parameters = ComposerNew.ExtractParameters(contents, out result);
-            
+
             if (result == false)
             {
                 return View("AddParameters");
@@ -95,7 +96,7 @@ namespace DockerComposeMVC.Controllers
             return View("AddParameters", parameters);
         }
 
-        
+
         public IActionResult ViewTemplateList()
         {
             return View(ComposerNew.TemplatesList);
@@ -105,11 +106,11 @@ namespace DockerComposeMVC.Controllers
         public IActionResult TemplateDetails([FromQuery] String cName)
         {
             ViewData["cFileName"] = cName;
-            CompositeModel composeFileDetails =  ComposerNew.GetSingleCompositeDetail(cName,true);
+            CompositeModel composeFileDetails = ComposerNew.GetSingleCompositeDetail(cName, true);
             String basePath = Path.Combine(Directory.GetCurrentDirectory(), "data/templates/" + cName);
             String contents = System.IO.File.ReadAllText(basePath);
             String[] parameters = ComposerNew.ExtractParameters(contents);
-            foreach(String a in parameters)
+            foreach (String a in parameters)
             {
                 Debug.WriteLine(a);
             }
@@ -206,28 +207,60 @@ namespace DockerComposeMVC.Controllers
             return View("SubmitNew");
         }
 
-        public IActionResult DebugListReady() {
+        public IActionResult DebugListReady()
+        {
             return Ok(ComposerNew.ReadyList);
         }
 
         public IActionResult DebugStart([FromQuery] string FileName)
         {
-            return Ok(ComposerNew.StartService(FileName));
+            try
+            {
+                string result = ComposerNew.StartService(FileName);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return NotFound("ERR_NO_SUCH_COMPOSE_FILE_FOUND: " + FileName);
+            }
+
         }
 
-        public IActionResult DebugStatus([FromQuery] string FileName){
-            return Ok(ComposerNew.GetServiceStatus(FileName));
+        public IActionResult DebugStatus([FromQuery] string FileName)
+        {
+            try
+            {
+                string result = ComposerNew.GetServiceStatus(FileName);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return NotFound("ERR_NO_SUCH_RUNNING_COMPOSE_FILE_FOUND: " + FileName);
+            }
+
+        }
+
+        public IActionResult DebugRunningList([FromQuery] string FileName)
+        {
+            return Ok(ComposerNew.GetRunningServices());
         }
 
         public IActionResult DebugStop([FromQuery] string FileName)
         {
-            return Ok(ComposerNew.StopService(FileName));
+            try
+            {
+                string result = ComposerNew.StopService(FileName);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return NotFound("ERR_NO_SUCH_RUNNING_COMPOSE_FILE_FOUND: " + FileName);
+            }
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
     }
 }
