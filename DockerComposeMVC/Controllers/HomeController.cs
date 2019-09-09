@@ -250,7 +250,7 @@ namespace DockerComposeMVC.Controllers
 
         }
 
-        public IActionResult DebugRunningList([FromQuery] string FileName)
+        public IActionResult DebugListRunning([FromQuery] string FileName)
         {
             return Ok(ComposerNew.GetRunningServices());
         }
