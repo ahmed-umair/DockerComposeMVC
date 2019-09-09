@@ -140,6 +140,11 @@
 
                 <div class="modal-body">
                     <form id="paramsForm" action="@Url.Action("CreateCustom")" method="POST">
+                        <div class="form-group row col-md-8">
+                            <label for="f">Destination File Name : </label>
+                            <input id="f" class="form-control" type="text" name="fileName">
+                        </div>
+
                         @{ foreach (string item in parameters)
                             {
                                 <div class="row">
@@ -152,7 +157,7 @@
                                 </div>
                             }
                         }
-                        <input type="hidden" name="fileString" value="@ViewData["fileString"]" />
+                        <input type="hidden" name="fileString" value="@ViewData["cFileName"]" />
                         <button type="submit" class="btn btn-success">Verify</button>
                     </form>
                 </div>
