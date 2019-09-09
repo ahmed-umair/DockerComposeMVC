@@ -30,5 +30,11 @@ namespace DockerComposeMVC.Models
             }
         }
 
+        public CompositeModel GetUpdatedModel()
+        {
+            UpdateContainersStatus();
+            return this;
+        }
+
     }
 }

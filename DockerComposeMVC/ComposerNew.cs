@@ -75,6 +75,10 @@ namespace DockerComposeMVC
             try
             {
                 var searchResult = ReadyList.FindAll(service => service.Service.State == ServiceRunningState.Running);
+                foreach(var composite in searchResult)
+                {
+                    composite.UpdateContainersStatus();
+                }
                 return searchResult;
             }
             catch
