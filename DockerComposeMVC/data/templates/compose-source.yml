@@ -31,7 +31,7 @@ services:
     ports:
       - '${{ChromePort}}:5900'
     environment:
-      - HUB_HOST=selenium-hub
+      - HUB_HOST=${{HubHost}}
       - HUB_PORT=4444
     networks: [grid]
 
