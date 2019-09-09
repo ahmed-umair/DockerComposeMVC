@@ -1,20 +1,15 @@
 ﻿
 @{
-    ViewData["Title"] = "Template Details";
+    ViewData["Title"] = "ReadyFileDetails";
 }
 
 @model CompositeModel
 
-<h2>Template Details</h2>
+<h2>Ready Compose File Details</h2>
 <h5>File Name: <span>@ViewData["cFileName"]</span></h5><hr />
 
-<div class="row justify-content-end mx-1">
-    @*<a class="btn btn-success mx-3" href="@Url.Action("AddParamsInTemplate", "Home", new { cName = @ViewData["cFileName"] })">Run This Config File</a>*@
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-        Run from this template
-    </button>
-</div>
-
+<a class="btn btn-success" style="margin-left:85%" href="@Url.Action("AddParamsInTemplate", "Home", new { cName = @ViewData["cFileName"] })">Run This Config File</a>
+    
 <div class="row">
     <div class="grid-container">
         @foreach (ContainerModel container in Model.ContainersFromFile)
@@ -29,8 +24,8 @@
                             <b>OS Type:</b> <span>
                                 @if (container.IsWindows)
                                 {<text>Windows</text> }
-                                else
-                                {<text>Linux</text>}
+                            else
+                            {<text>Linux</text>}
                             </span>
                         </li>
 
@@ -41,17 +36,10 @@
                                 <ul>
                                     @foreach (string ports in container.PortMappings)
                                     {
-                                        String[] pairs = ports.Split(":");
-                                        String parameter = pairs[0].Substring(3, pairs[0].Length - 5);
-                                        <li>
-                                            <span style="background-color: forestgreen; color: white; border-radius: 10px; padding: 0 5px 0 5px;">
-                                                @parameter
-                                            </span><span> : @pairs[1]</span>
-                                        </li>
+                                        <li><span>@ports[0] : @ports[1]</span></li>
                                     }
                                 </ul>
                             </li>
-                            
                         }
 
                         @if (container.EnvironmentVariables != null)
@@ -122,43 +110,3 @@
         }
     </div>
 </div>
-
-
-@{String[] parameters = (String [])ViewData["params"]; }
-
-
-<!-- Add Parameters Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Parameters for @ViewData["cFileName"]<span>.yaml</span></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <form id="paramsForm" action="@Url.Action("CreateCustom")" method="POST">
-                        @{ foreach (string item in parameters)
-                            {
-                                <div class="row">
-
-                                    <div class="form-group col-md-6">
-                                        <label for="my-input">@item</label>
-                                        <input id="my-input" class="form-control" type="text" name="@item">
-                                    </div>
-
-                                </div>
-                            }
-                        }
-                        <input type="hidden" name="fileString" value="@ViewData["fileString"]" />
-                        <button type="submit" class="btn btn-success">Verify</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>

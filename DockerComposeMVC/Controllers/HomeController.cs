@@ -102,6 +102,11 @@ namespace DockerComposeMVC.Controllers
             return View(ComposerNew.TemplatesList);
         }
 
+        public IActionResult ViewReadyList()
+        {
+            return View(ComposerNew.ReadyList);
+        }
+
         //[Route("{cName}")]
         public IActionResult TemplateDetails([FromQuery] String cName)
         {
@@ -110,12 +115,17 @@ namespace DockerComposeMVC.Controllers
             String basePath = Path.Combine(Directory.GetCurrentDirectory(), "data/templates/" + cName);
             String contents = System.IO.File.ReadAllText(basePath);
             String[] parameters = ComposerNew.ExtractParameters(contents);
-            foreach (String a in parameters)
-            {
-                Debug.WriteLine(a);
-            }
-            Debug.WriteLine("------------------");
+            
             ViewData["params"] = parameters;
+            return View(composeFileDetails);
+        }
+
+        public IActionResult ReadyFileDetails([FromQuery] String cName)
+        {
+            ViewData["cFileName"] = cName;
+            CompositeModel composeFileDetails = ComposerNew.GetSingleCompositeDetail(cName, false);
+            //String basePath = Path.Combine(Directory.GetCurrentDirectory(), "data/templates/" + cName);
+            //String contents = System.IO.File.ReadAllText(basePath);
             return View(composeFileDetails);
         }
 
