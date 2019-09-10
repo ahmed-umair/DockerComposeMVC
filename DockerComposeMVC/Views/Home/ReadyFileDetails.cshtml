@@ -8,8 +8,9 @@
 <h2>Ready Compose File Details</h2>
 <h5>File Name: <span>@ViewData["cFileName"]</span></h5><hr />
 
-<a class="btn btn-success" style="margin-left:85%" href="@Url.Action("RunComposeFile", "Home", new { cName = @ViewData["cFileName"] })">Run This Config File</a>
-    
+<a class="btn btn-success" style="margin-left:68%" href="@Url.Action("RunComposeFile", "Home", new { cName = @ViewData["cFileName"] })">Run This Config File</a>
+<a class="btn btn-danger" href="@Url.Action("RemoveReadyFile", "Home", new { FileName = @ViewData["cFileName"] })">Delete This Config File</a>    
+
 <div class="row">
     <div class="grid-container">
         @foreach (ContainerModel container in Model.ContainersFromFile)

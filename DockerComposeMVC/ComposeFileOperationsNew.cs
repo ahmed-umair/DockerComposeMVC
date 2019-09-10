@@ -1,13 +1,13 @@
-﻿using Ductus.FluentDocker.Services;
+﻿using DockerComposeMVC.Models;
 using Ductus.FluentDocker.Builders;
+using Ductus.FluentDocker.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using YamlDotNet.Serialization;
-using DockerComposeMVC.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace DockerComposeMVC
 {
@@ -181,7 +181,8 @@ namespace DockerComposeMVC
 
         public static bool RemoveFileFromTemplatesFolder(string FileName)
         {
-            try { 
+            try
+            {
                 File.Delete(Path.Combine(Program.ComposeTemplateDir, FileName));
                 return true;
             }
@@ -242,7 +243,7 @@ namespace DockerComposeMVC
             try
             {
                 var searchResult = ComposerNew.ReadyList.Single(service => service.Name == FileName);
-                if (!(searchResult.Service.State is ServiceRunningState.Stopped))
+                if ((searchResult.Service.State is ServiceRunningState.Running || searchResult.Service.State is ServiceRunningState.Starting || searchResult.Service.State is ServiceRunningState.Stopping))
                 {
                     throw new Exception("ERR_CANNOT_DELETE_RUNNING_COMPOSE_FILE");
                 }

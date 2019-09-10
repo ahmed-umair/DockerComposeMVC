@@ -10,9 +10,10 @@
 
 <div class="row justify-content-end mx-1">
     @*<a class="btn btn-success mx-3" href="@Url.Action("AddParamsInTemplate", "Home", new { cName = @ViewData["cFileName"] })">Run This Config File</a>*@
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+    <button style="margin-right:10px;" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
         Run from this template
     </button>
+    <a class="btn btn-danger" href="@Url.Action("RemoveTemplateFile", "Home", new { FileName = @ViewData["cFileName"] })">Delete This Config File</a>
 </div>
 
 <div class="row">

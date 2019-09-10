@@ -185,8 +185,6 @@ namespace DockerComposeMVC.Controllers
         public IActionResult VerifyUploadedTemplate([FromForm] Dictionary<string, string> dict, [FromForm] String templateName)
         {
             templateName = templateName + ".yml";
-            Debug.WriteLine("--------------------");
-            Debug.WriteLine(templateName);
 
             String tempPath = Path.Combine(Program.ComposeTemporaryDir, templateName);
             String fileString = System.IO.File.ReadAllText(tempPath);
@@ -204,13 +202,14 @@ namespace DockerComposeMVC.Controllers
             {
                 ComposeFileOperationsNew.RemoveFileFromReadyFolder(filename);
                 ComposeFileOperationsNew.RemoveFromReadyList(filename);
+                return View("ErrorPage");
             }
             else
             {
                 ComposeFileOperationsNew.AddToTemplatesFromFile(Path.Combine(Program.ComposeTemporaryDir, templateName), templateName, out writeStatus);
+                return View("SuccessPage");
             }
 
-            return Ok(verificationResult);
         }
 
         public IActionResult DebugListReady()
@@ -278,6 +277,33 @@ namespace DockerComposeMVC.Controllers
                 return NotFound("ERR_NO_SUCH_RUNNING_COMPOSE_FILE_FOUND: " + FileName);
             }
         }
+
+        public IActionResult RemoveReadyFile([FromQuery] string FileName)
+        {
+            if (ComposeFileOperationsNew.RemoveFromReadyList(FileName))
+            {
+                return View("ViewReadyList", ComposerNew.ReadyList);
+            }
+            else
+            {
+                return View("GeneralError");
+            }
+        }
+
+        public IActionResult RemoveTemplateFile([FromQuery] string FileName)
+        {
+            Debug.WriteLine("------------------");
+            Debug.WriteLine(FileName);
+            if (ComposeFileOperationsNew.RemoveComposeTemplateFromList(FileName))
+            {
+                return View("ViewTemplateList", ComposerNew.TemplatesList);
+            }
+            else
+            {
+                return View("GeneralError");
+            }
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
