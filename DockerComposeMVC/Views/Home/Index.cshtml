@@ -2,31 +2,30 @@
     ViewData["Title"] = "Home Page";
 }
 
+<style>a {color:black;}</style>
+
 <div class="row">
     <div class="col-md-10">
         <h1>Please choose an option below</h1>
     </div>
-    <div class="col-md-2 my-md-auto">
-        <a class="btn btn-dark" asp-controller="Home" asp-action="Upload">Upload Compose</a>
-    </div>
 </div><br/>
 
-      <div class="row justify-content-around">
-          <div class="col-md-5 border border-primary rounded">
-              <a asp-area="" asp-controller="Home" asp-action="ViewReadyList"><h3>View Ready Compose Files</h3></a>
-          </div>
-          <div></div>
-          <div class="col-md-5 border border-primary rounded">
-              <a asp-area="" asp-controller="Home" asp-action="RunningReadyFiles"><h3>View Running Composer Files</h3></a>
-          </div>
-      </div><br />
-
-<div class="row justify-content-around">
-    <div class="col-md-5 border border-primary rounded">
-        <a asp-area="" asp-controller="Home" asp-action=""><h3>Check configurations of previously run applications</h3></a>
+<div class="row justify-content-around text-center ">
+    <div class="col-md-5 border border-primary rounded bg-warning">
+        <a asp-area="" asp-controller="Home" asp-action="ViewReadyList"><h3>Compose Ready</h3></a>
     </div>
     <div></div>
-    <div class="col-md-5 border border-primary rounded">
-        <a asp-area="" asp-controller="Home" asp-action="ViewTemplateList"><h3>View Template Details</h3></a>
+    <div class="col-md-5 border border-primary rounded bg-warning">
+        <a asp-area="" asp-controller="Home" asp-action="ViewTemplateList"><h3>Compose Template</h3></a>
+    </div>
+</div><br />
+
+<div class="row justify-content-around text-center">
+    <div class="col-md-5 border border-primary rounded bg-warning">
+        <a asp-area="" asp-controller="Home" asp-action="Upload"><h3>Upload Compose</h3></a>
+    </div>
+    <div></div>
+    <div class="col-md-5 border border-primary rounded bg-warning">
+        <a asp-area="" asp-controller="Home" asp-action="RunningReadyFiles"><h3>View Running Compose Services</h3></a>
     </div>
 </div>
