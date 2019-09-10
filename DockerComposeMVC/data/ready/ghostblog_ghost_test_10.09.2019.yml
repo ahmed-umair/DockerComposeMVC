@@ -4,9 +4,9 @@ services:
   ghost:
     image: ghost:latest
     ports:
-      - ${{Ghost Host Port}}:2368
+      - 8900:2368
     volumes:
       - ghost-data:/var/lib/ghost/content/
 
 volumes:
-  ghost-data:
+  Ghost-data:

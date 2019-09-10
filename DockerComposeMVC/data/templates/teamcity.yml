@@ -7,7 +7,7 @@ services:
       - .\datadir:/data/teamcity_server/datadir
       - .\logs:/opt/teamcity/logs
     ports:
-      - "8111:8111"
+      - "${{Host Port}}:8111"
   #TeamCity Build Agent
   tc-build-agent:
     image: jetbrains/teamcity-agent
