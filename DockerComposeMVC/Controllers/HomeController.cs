@@ -192,7 +192,7 @@ namespace DockerComposeMVC.Controllers
                 ComposeFileOperationsNew.AddComposeTemplateToList(filename);
             }
 
-            return View("SubmitNew", verificationResult);
+            return View("VerificationResult", verificationResult);
         }
 
         public IActionResult DebugListReady()

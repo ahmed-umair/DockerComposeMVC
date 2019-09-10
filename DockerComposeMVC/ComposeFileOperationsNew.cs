@@ -211,7 +211,9 @@ namespace DockerComposeMVC
                 {
                     throw new Exception("ERR_CANNOT_DELETE_RUNNING_COMPOSE_FILE");
                 }
+                var filename = searchResult.Name;
                 ComposerNew.ReadyList.Remove(searchResult);
+                RemoveFileFromReadyFolder(filename);
                 return true;
             }
             catch (Exception e)
