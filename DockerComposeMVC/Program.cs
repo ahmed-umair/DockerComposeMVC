@@ -13,9 +13,9 @@ namespace DockerComposeMVC
 
     public class Program
     {
-        public static readonly string compose_source_path = Path.GetFullPath("compose-source/docker-compose.yml");
-        public static readonly string compose_destination_path = Path.GetFullPath("compose-destination/docker-compose.yml");
-        public const string paramsListFilePath = "config/paramsList.json";
+        public static readonly string ComposeTemplateDir = Path.GetFullPath("data/templates");
+        public static readonly string ComposeReadyDir = Path.GetFullPath("data/ready");
+        public static readonly string ComposeTemporaryDir = Path.GetFullPath("temp");
         
         public static void Main(string[] args)
         {
