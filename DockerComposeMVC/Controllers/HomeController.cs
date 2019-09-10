@@ -86,7 +86,7 @@ namespace DockerComposeMVC.Controllers
 
             try
             {
-                System.IO.File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "temp/" + filename + ".yml"), contents);
+                System.IO.File.WriteAllText(Path.Combine(Program.ComposeTemporaryDir, filename + ".yml"), contents);
             }
             catch (Exception e)
             {
@@ -114,7 +114,7 @@ namespace DockerComposeMVC.Controllers
         {
             ViewData["cFileName"] = cName;
             CompositeModel composeFileDetails = ComposerNew.GetSingleCompositeDetail(cName, true);
-            String basePath = Path.Combine(Directory.GetCurrentDirectory(), "data/templates/" + cName);
+            String basePath = Path.Combine(Program.ComposeTemplateDir, cName);
             String contents = System.IO.File.ReadAllText(basePath);
             String[] parameters = ComposerNew.ExtractParameters(contents);
 
@@ -188,7 +188,7 @@ namespace DockerComposeMVC.Controllers
             Debug.WriteLine("--------------------");
             Debug.WriteLine(templateName);
 
-            String tempPath = Path.Combine(Directory.GetCurrentDirectory(), @"temp\" + templateName);
+            String tempPath = Path.Combine(Program.ComposeTemporaryDir, templateName);
             String fileString = System.IO.File.ReadAllText(tempPath);
 
             string finalComposeString = ComposerNew.ReplaceParams(fileString, dict);

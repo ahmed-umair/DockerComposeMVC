@@ -1,0 +1,60 @@
+version: "2.4"
+services:
+  #ASP NETCore Application
+  netcore: 
+    image: mcr.microsoft.com/dotnet/core/samples:aspnetapp
+    ports:
+      - "5500:80"
+  #SELENIUM GRID HUB
+  hub:
+    image: selenium/hub
+    ports:
+      - "4444:4444"
+  #SELENIUM GRID NODE FIREFOX
+  firefox:
+    image: selenium/node-firefox
+    depends_on: 
+      - hub
+    environment: 
+      NODE_MAX_INSTANCES: 3
+      NODE_MAX_SESSION: 3
+      HUB_HOST: hub
+    links:
+    - hub
+  #SELENIUM GRID NODE FIREFOX DEBUG
+  firefox-debug:
+    image: selenium/node-firefox-debug
+    ports: 
+      - "5903:5900"
+    depends_on: 
+      - hub
+    environment: 
+      NODE_MAX_INSTANCES: 3
+      NODE_MAX_SESSION: 3
+      HUB_HOST: hub
+    links:
+    - hub
+  #CHROME NODES
+  chrome:
+    image: selenium/node-chrome
+    depends_on: 
+      - hub
+    environment: 
+      NODE_MAX_INSTANCES: 3
+      NODE_MAX_SESSION: 3
+      HUB_HOST: hub
+    links:
+    - hub
+  #CHROME DEBUG
+  chrome-debug:
+    image: selenium/node-chrome-debug
+    ports:
+    - "5906:5900"
+    depends_on: 
+      - hub
+    environment: 
+      NODE_MAX_INSTANCES: 3
+      NODE_MAX_SESSION: 3
+      HUB_HOST: hub
+    links:
+    - hub

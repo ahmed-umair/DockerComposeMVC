@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using YamlDotNet.RepresentationModel;
 using YamlDotNet.Serialization;
 using DockerComposeMVC.Models;
 using Newtonsoft.Json;
@@ -28,11 +26,12 @@ namespace DockerComposeMVC
             var config = Configuration.GetConfig();
             var list = new List<CompositeModel>();
             var FolderPath = directory;
-            string[] fileNames = Directory.GetFiles(FolderPath);
+            DirectoryInfo dirInfo = new DirectoryInfo(directory);
+            FileInfo[] fileNames = dirInfo.GetFiles().OrderByDescending(p=> p.CreationTime).ToArray();
 
             foreach (var FileName in fileNames)
             {
-                var composite = LoadCompositeFromSingleFile(FileName, IsTemplate);
+                var composite = LoadCompositeFromSingleFile(FileName.FullName, IsTemplate);
                 list.Add(composite);
             }
             return list;
@@ -153,7 +152,7 @@ namespace DockerComposeMVC
         {
             try
             {
-                var newComposite = LoadCompositeFromSingleFile(Path.Combine(Directory.GetCurrentDirectory(), @"data\templates") + "\\" + FileName, true);
+                var newComposite = LoadCompositeFromSingleFile(Path.Combine(Program.ComposeTemplateDir, FileName), true);
                 if (ComposerNew.TemplatesList.Contains(newComposite))
                 {
                     ComposerNew.TemplatesList.Add(newComposite);
@@ -185,7 +184,7 @@ namespace DockerComposeMVC
         public static bool AddToReadyList(string FileName)
         {
             
-                var newComposite = LoadCompositeFromSingleFile(Path.Combine(Directory.GetCurrentDirectory(), @"data\ready") + "\\" + FileName, false);
+                var newComposite = LoadCompositeFromSingleFile(Path.Combine(Program.ComposeReadyDir, FileName), false);
                 if (!ComposerNew.ReadyList.Contains(newComposite))
                 {
                     ComposerNew.ReadyList.Add(newComposite);
@@ -220,7 +219,7 @@ namespace DockerComposeMVC
             try
             {
                 string filename = templateName.Substring(0,templateName.Length - 4) + "_" + instanceName + "_" + System.DateTime.Now.ToShortDateString() + ".yml";
-                File.WriteAllText(Path.GetFullPath(Directory.GetCurrentDirectory() + @"\data\ready\" + filename), contents);
+                File.WriteAllText(Path.Combine(Program.ComposeReadyDir, filename), contents);
                 System.Diagnostics.Debug.WriteLine("-------------------------");
                 System.Diagnostics.Debug.WriteLine(filename);
                 AddToReadyList(filename);
@@ -241,7 +240,7 @@ namespace DockerComposeMVC
                 var searchResult = RunningList.Where(service => service.Name == FileName);
                 if (searchResult.Count<CompositeModel>() == 0)
                 {
-                    File.Delete(Path.GetFullPath(Directory.GetCurrentDirectory() + @"\data\ready\" + FileName));
+                    File.Delete(Path.Combine(Program.ComposeReadyDir, FileName));
                     return true;
                 }
                 return false;

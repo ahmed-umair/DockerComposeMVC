@@ -15,12 +15,11 @@ namespace DockerComposeMVC
     {
         public static List<CompositeModel> TemplatesList = new List<CompositeModel>();
         public static List<CompositeModel> ReadyList = new List<CompositeModel>();
-        public static readonly string BasePath = Path.Combine(Directory.GetCurrentDirectory(), "data");
 
         public static void InitializeLists()
         {
-            TemplatesList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\templates"), true);
-            ReadyList = ComposeFileOperationsNew.LoadCompositesFromFiles(Path.Combine(Directory.GetCurrentDirectory(), @"data\ready"), false);
+            TemplatesList = ComposeFileOperationsNew.LoadCompositesFromFiles(Program.ComposeTemplateDir, true);
+            ReadyList = ComposeFileOperationsNew.LoadCompositesFromFiles(Program.ComposeReadyDir, false);
         }
         public static string StartService(string ServiceName)
         {
