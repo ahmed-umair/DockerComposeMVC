@@ -185,9 +185,7 @@ namespace DockerComposeMVC.Controllers
         public IActionResult VerifyUploadedTemplate([FromForm] Dictionary<string, string> dict, [FromForm] String templateName)
         {
             templateName = templateName + ".yml";
-            Debug.WriteLine("--------------------");
-            Debug.WriteLine(templateName);
-            
+                        
             String tempPath = Path.Combine(Directory.GetCurrentDirectory(), @"temp\" + templateName);
             String fileString = System.IO.File.ReadAllText(tempPath);
 
@@ -204,14 +202,14 @@ namespace DockerComposeMVC.Controllers
             {
                 ComposeFileOperationsNew.RemoveFileFromReadyFolder(filename);
                 ComposeFileOperationsNew.RemoveFromReadyList(filename);
+                return View("ErrorPage");
             }
             else
             {
                 ComposeFileOperationsNew.AddComposeTemplateToList(filename);
+                return View("SuccessPage");
             }
-
-
-            return Ok(verificationResult);
+            
         }
 
         public IActionResult DebugListReady()
