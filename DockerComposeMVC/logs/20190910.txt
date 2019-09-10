@@ -77,4 +77,659 @@ Request finished in 2154.0282ms 200 text/html; charset=utf-8
  2019-09-10 13:15:48,384  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view Index executed in 617.5046ms.
  2019-09-10 13:15:48,434  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.Index (A) in 1086.6648ms
  2019-09-10 13:15:48,478  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 1711.3607ms 200 text/html; charset=utf-8
+ 2019-09-10 13:20:41,527 DEBUG HttpsConnectionAdapter.? [?] - MESSAGE: Failed to authenticate HTTPS connection.
+ System.IO.IOException: Authentication failed because the remote party has closed the transport stream.
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[] buffer, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslStream.BeginAuthenticateAsServer(SslServerAuthenticationOptions sslServerAuthenticationOptions, CancellationToken cancellationToken, AsyncCallback asyncCallback, Object asyncState)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_0(SslServerAuthenticationOptions arg1, CancellationToken arg2, AsyncCallback callback, Object state)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncImpl[TArg1,TArg2](Func`5 beginMethod, Func`2 endFunction, Action`1 endAction, TArg1 arg1, TArg2 arg2, Object state, TaskCreationOptions creationOptions)
+   at System.Threading.Tasks.TaskFactory.FromAsync[TArg1,TArg2](Func`5 beginMethod, Action`1 endMethod, TArg1 arg1, TArg2 arg2, Object state, TaskCreationOptions creationOptions)
+   at System.Threading.Tasks.TaskFactory.FromAsync[TArg1,TArg2](Func`5 beginMethod, Action`1 endMethod, TArg1 arg1, TArg2 arg2, Object state)
+   at System.Net.Security.SslStream.AuthenticateAsServerAsync(SslServerAuthenticationOptions sslServerAuthenticationOptions, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-09-10 13:20:42,994  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/  
+ 2019-09-10 13:20:43,880  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:20:44,261  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.Index (A) - Validation state: Valid
+ 2019-09-10 13:20:44,268  INFO DockerComposeMVC.Program.? [?] - MESSAGE: Someone just logged into the portal
+ 2019-09-10 13:20:44,292  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.Index (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 11.0761ms.
+ 2019-09-10 13:20:44,420  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view Index.
+ 2019-09-10 13:20:44,945  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view Index executed in 425.8825ms.
+ 2019-09-10 13:20:44,984  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.Index (A) in 1072.5019ms
+ 2019-09-10 13:20:45,029  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 2055.3258ms 200 text/html; charset=utf-8
+ 2019-09-10 13:20:52,899  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ViewTemplateList  
+ 2019-09-10 13:20:52,928  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ViewTemplateList", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewTemplateList() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:20:53,007  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ViewTemplateList (A) - Validation state: Valid
+ 2019-09-10 13:20:53,027  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ViewTemplateList (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.9617ms.
+ 2019-09-10 13:20:53,072  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ViewTemplateList.
+ 2019-09-10 13:20:53,190  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ViewTemplateList executed in 141.7485ms.
+ 2019-09-10 13:20:53,289  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ViewTemplateList (A) in 330.8279ms
+ 2019-09-10 13:20:53,349  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 436.2443ms 200 text/html; charset=utf-8
+ 2019-09-10 13:20:55,776  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/TemplateDetails?cName=selenium-hub.yml  
+ 2019-09-10 13:20:55,815  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "TemplateDetails", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult TemplateDetails(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:20:55,913  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.TemplateDetails (A) - Validation state: Valid
+ 2019-09-10 13:20:55,933  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.TemplateDetails (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 8.7824ms.
+ 2019-09-10 13:20:55,954  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view TemplateDetails.
+ 2019-09-10 13:20:56,014  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view TemplateDetails executed in 69.348ms.
+ 2019-09-10 13:20:56,034  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.TemplateDetails (A) in 199.6387ms
+ 2019-09-10 13:20:56,055  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 276.3958ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:20,743  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 POST https://localhost:5001/Home/CreateCustom application/x-www-form-urlencoded 176
+ 2019-09-10 13:21:20,813  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "CreateCustom", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CreateCustom(System.Collections.Generic.Dictionary`2[System.String,System.String], System.String, System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:21:21,017  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.CreateCustom (A) - Validation state: Valid
+ 2019-09-10 13:21:21,032 DEBUG DockerComposeMVC.Program.? [?] - MESSAGE: Attempting to save file selenium-hub_just_testing_10.09.2019.yml in the \data\ready\ folder
+ 2019-09-10 13:21:21,057 DEBUG DockerComposeMVC.Program.? [?] - MESSAGE: Saved file selenium-hub_just_testing_10.09.2019.yml in the \data\ready\ folder
+ 2019-09-10 13:21:21,071 DEBUG DockerComposeMVC.Program.? [?] - MESSAGE: Attempting to read and create CompositeModel from file: C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\data\ready\selenium-hub_just_testing_10.09.2019.yml with IsTemplate = False
+ 2019-09-10 13:21:21,209 DEBUG DockerComposeMVC.Program.? [?] - MESSAGE: Made a CompositeModel from file: C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\data\ready\selenium-hub_just_testing_10.09.2019.yml with IsTemplate = False
+ 2019-09-10 13:21:21,862  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.CreateCustom (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 723.8182ms.
+ 2019-09-10 13:21:22,022  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunComposeFile.
+ 2019-09-10 13:21:22,344  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunComposeFile executed in 240.1375ms.
+ 2019-09-10 13:21:22,726  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.CreateCustom (A) in 1735.6653ms
+ 2019-09-10 13:21:23,068  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 2228.9235ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:27,432  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:21:27,521  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:21:27,832  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:21:27,976  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 11.2385ms.
+ 2019-09-10 13:21:28,104  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:21:28,321  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 264.7084ms.
+ 2019-09-10 13:21:28,395  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 830.5879ms
+ 2019-09-10 13:21:28,499  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 1015.4134ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:31,895  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:21:31,914  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:21:31,984  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:21:32,003  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.4966ms.
+ 2019-09-10 13:21:32,065  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:21:32,104  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 68.6261ms.
+ 2019-09-10 13:21:32,128  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 195.9795ms
+ 2019-09-10 13:21:32,143  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 245.4855ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:32,501  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+ 2019-09-10 13:21:32,608  INFO Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.? [?] - MESSAGE: Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\wwwroot\favicon.ico'
+ 2019-09-10 13:21:32,722  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 189.8151ms 200 image/x-icon
+ 2019-09-10 13:21:33,729  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:21:33,759  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:21:33,911  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:21:34,163  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0821ms.
+ 2019-09-10 13:21:34,267  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:21:34,325  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 51.6606ms.
+ 2019-09-10 13:21:34,663  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 673.97ms
+ 2019-09-10 13:21:34,872  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 1051.6646ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:34,920  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+ 2019-09-10 13:21:34,971  INFO Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.? [?] - MESSAGE: Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\wwwroot\favicon.ico'
+ 2019-09-10 13:21:35,023  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 90.801ms 200 image/x-icon
+ 2019-09-10 13:21:35,990  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:21:36,026  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:21:36,108  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:21:36,130  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0351ms.
+ 2019-09-10 13:21:36,155  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:21:36,201  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 48.1413ms.
+ 2019-09-10 13:21:36,325  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 245.0647ms
+ 2019-09-10 13:21:36,374  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 359.3062ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:36,524  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+ 2019-09-10 13:21:36,614  INFO Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.? [?] - MESSAGE: Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\wwwroot\favicon.ico'
+ 2019-09-10 13:21:36,634  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 113.548ms 200 image/x-icon
+ 2019-09-10 13:21:37,547  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:21:37,569  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:21:37,720  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:21:37,825  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0324ms.
+ 2019-09-10 13:21:37,879  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:21:38,198  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 121.9207ms.
+ 2019-09-10 13:21:38,457  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 817.7475ms
+ 2019-09-10 13:21:38,594  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 942.203ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:38,671  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+ 2019-09-10 13:21:38,702  INFO Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.? [?] - MESSAGE: Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\wwwroot\favicon.ico'
+ 2019-09-10 13:21:38,733  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 82.3765ms 200 image/x-icon
+ 2019-09-10 13:21:38,940  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:21:38,987  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:21:39,093  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:21:39,130  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0403ms.
+ 2019-09-10 13:21:39,162  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:21:39,272  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 27.8298ms.
+ 2019-09-10 13:21:39,361  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 333.6061ms
+ 2019-09-10 13:21:39,516  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 572.9451ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:39,592  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+ 2019-09-10 13:21:39,629  INFO Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.? [?] - MESSAGE: Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\wwwroot\favicon.ico'
+ 2019-09-10 13:21:39,660  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 57.1707ms 200 image/x-icon
+ 2019-09-10 13:21:40,621  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:21:40,660  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:21:40,739  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:21:40,760  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0339ms.
+ 2019-09-10 13:21:40,783  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:21:40,807  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 24.069ms.
+ 2019-09-10 13:21:40,990  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 211.7418ms
+ 2019-09-10 13:21:41,084  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 410.7693ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:41,227  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+ 2019-09-10 13:21:41,280  INFO Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.? [?] - MESSAGE: Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\wwwroot\favicon.ico'
+ 2019-09-10 13:21:41,299  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 75.237ms 200 image/x-icon
+ 2019-09-10 13:21:42,452  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:21:42,483  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:21:42,570  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:21:42,596  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0387ms.
+ 2019-09-10 13:21:42,661  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:21:42,817  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 97.5806ms.
+ 2019-09-10 13:21:43,111  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 431.609ms
+ 2019-09-10 13:21:43,172  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 722.0196ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:43,267  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+ 2019-09-10 13:21:43,403  INFO Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.? [?] - MESSAGE: Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\wwwroot\favicon.ico'
+ 2019-09-10 13:21:43,470  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 197.9021ms 200 image/x-icon
+ 2019-09-10 13:21:44,177  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:21:44,209  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:21:44,314  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:21:44,339  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0284ms.
+ 2019-09-10 13:21:44,391  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:21:44,427  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 34.7184ms.
+ 2019-09-10 13:21:44,536  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 263.039ms
+ 2019-09-10 13:21:44,653  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 399.8196ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:44,719  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+ 2019-09-10 13:21:44,751  INFO Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.? [?] - MESSAGE: Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\wwwroot\favicon.ico'
+ 2019-09-10 13:21:44,785  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 62.312ms 200 image/x-icon
+ 2019-09-10 13:21:45,715  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:21:45,736  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:21:45,805  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:21:45,828  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0339ms.
+ 2019-09-10 13:21:45,855  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:21:45,883  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 26.9554ms.
+ 2019-09-10 13:21:45,919  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 157.6922ms
+ 2019-09-10 13:21:45,947  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 220.2651ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:46,324  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+ 2019-09-10 13:21:46,400  INFO Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.? [?] - MESSAGE: Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\wwwroot\favicon.ico'
+ 2019-09-10 13:21:46,419  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 99.6573ms 200 image/x-icon
+ 2019-09-10 13:21:46,984  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:21:47,016  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:21:47,157  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:21:47,201  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0691ms.
+ 2019-09-10 13:21:47,257  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:21:47,298  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 43.8229ms.
+ 2019-09-10 13:21:47,333  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 284.5524ms
+ 2019-09-10 13:21:47,367  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 376.798ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:47,840  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+ 2019-09-10 13:21:47,893  INFO Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.? [?] - MESSAGE: Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\wwwroot\favicon.ico'
+ 2019-09-10 13:21:47,961  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 127.7919ms 200 image/x-icon
+ 2019-09-10 13:21:48,342  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:21:48,373  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:21:48,525  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:21:48,547  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0671ms.
+ 2019-09-10 13:21:48,578  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:21:48,673  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 57.2987ms.
+ 2019-09-10 13:21:48,709  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 252.3591ms
+ 2019-09-10 13:21:48,750  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 400.5206ms 200 text/html; charset=utf-8
+ 2019-09-10 13:21:49,242  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+ 2019-09-10 13:21:49,484  INFO Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.? [?] - MESSAGE: Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\wwwroot\favicon.ico'
+ 2019-09-10 13:21:50,031  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 562.2834ms 200 image/x-icon
+ 2019-09-10 13:22:06,429  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:22:06,458  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:22:06,623  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:22:07,057  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 404.5287ms.
+ 2019-09-10 13:22:07,091  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:22:07,124  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 37.0122ms.
+ 2019-09-10 13:22:07,221  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 666.8514ms
+ 2019-09-10 13:22:07,311  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 887.4026ms 200 text/html; charset=utf-8
+ 2019-09-10 13:22:07,507  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+ 2019-09-10 13:22:07,590  INFO Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.? [?] - MESSAGE: Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\wwwroot\favicon.ico'
+ 2019-09-10 13:22:07,620  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 126.5026ms 200 image/x-icon
+ 2019-09-10 13:22:14,200  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/StopRunningFile?FileName=selenium-hub_just_testing_10.09.2019.yml  
+ 2019-09-10 13:22:14,254  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "StopRunningFile", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult StopRunningFile(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:22:14,404  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.StopRunningFile (A) - Validation state: Valid
+ 2019-09-10 13:22:22,931  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.StopRunningFile (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 8501.7395ms.
+ 2019-09-10 13:22:22,949  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:22:22,992  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 22.4609ms.
+ 2019-09-10 13:22:23,148  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.StopRunningFile (A) in 8830.9265ms
+ 2019-09-10 13:22:23,203  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 8983.8358ms 200 text/html; charset=utf-8
+ 2019-09-10 13:29:28,694 DEBUG HttpsConnectionAdapter.? [?] - MESSAGE: Failed to authenticate HTTPS connection.
+ System.IO.IOException: Authentication failed because the remote party has closed the transport stream.
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-09-10 13:29:29,746  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/  
+ 2019-09-10 13:29:30,395  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:29:30,676  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.Index (A) - Validation state: Valid
+ 2019-09-10 13:29:30,689  INFO DockerComposeMVC.Program.? [?] - MESSAGE: Someone just logged into the portal
+ 2019-09-10 13:29:30,714  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.Index (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 10.5368ms.
+ 2019-09-10 13:29:30,818  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view Index.
+ 2019-09-10 13:29:31,382  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view Index executed in 565.1623ms.
+ 2019-09-10 13:29:31,420  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.Index (A) in 1001.8112ms
+ 2019-09-10 13:29:31,479  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 1733.7726ms 200 text/html; charset=utf-8
+ 2019-09-10 13:29:50,633  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ViewReadyList  
+ 2019-09-10 13:29:50,660  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ViewReadyList", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewReadyList() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:29:50,744  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ViewReadyList (A) - Validation state: Valid
+ 2019-09-10 13:29:50,761  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ViewReadyList (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 2.1127ms.
+ 2019-09-10 13:29:50,807  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ViewReadyList.
+ 2019-09-10 13:29:51,068  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ViewReadyList executed in 296.7223ms.
+ 2019-09-10 13:29:51,082  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ViewReadyList (A) in 406.0191ms
+ 2019-09-10 13:29:51,098  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 466.1375ms 200 text/html; charset=utf-8
+ 2019-09-10 13:32:20,644  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ReadyFileDetails?cName=selenium-hub_just_testing_10.09.2019.yml  
+ 2019-09-10 13:32:20,680  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ReadyFileDetails", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ReadyFileDetails(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:32:20,789  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) - Validation state: Valid
+ 2019-09-10 13:32:20,813  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 5.1263ms.
+ 2019-09-10 13:32:20,923  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ReadyFileDetails.
+ 2019-09-10 13:32:20,975  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ReadyFileDetails executed in 146.4781ms.
+ 2019-09-10 13:32:21,154  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) in 419.2527ms
+ 2019-09-10 13:32:21,237  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 549.0467ms 200 text/html; charset=utf-8
+ 2019-09-10 13:32:24,376  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RemoveReadyFile?FileName=selenium-hub_just_testing_10.09.2019.yml  
+ 2019-09-10 13:32:24,409  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RemoveReadyFile", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RemoveReadyFile(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:32:24,490  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RemoveReadyFile (A) - Validation state: Valid
+ 2019-09-10 13:32:24,517  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RemoveReadyFile (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 5.6092ms.
+ 2019-09-10 13:32:24,539  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ViewReadyList.
+ 2019-09-10 13:32:24,562  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ViewReadyList executed in 30.4179ms.
+ 2019-09-10 13:32:24,597  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RemoveReadyFile (A) in 152.5303ms
+ 2019-09-10 13:32:24,637  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 269.992ms 200 text/html; charset=utf-8
+ 2019-09-10 13:32:28,792  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ReadyFileDetails?cName=Test123_test_10.09.2019.yml  
+ 2019-09-10 13:32:28,812  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ReadyFileDetails", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ReadyFileDetails(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:32:28,913  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) - Validation state: Valid
+ 2019-09-10 13:32:28,930  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.2374ms.
+ 2019-09-10 13:32:28,950  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ReadyFileDetails.
+ 2019-09-10 13:32:29,074  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ReadyFileDetails executed in 27.117ms.
+ 2019-09-10 13:32:29,196  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) in 337.9086ms
+ 2019-09-10 13:32:29,233  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 431.6343ms 200 text/html; charset=utf-8
+ 2019-09-10 13:32:30,132  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RemoveReadyFile?FileName=Test123_test_10.09.2019.yml  
+ 2019-09-10 13:32:30,150  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RemoveReadyFile", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RemoveReadyFile(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:32:30,224  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RemoveReadyFile (A) - Validation state: Valid
+ 2019-09-10 13:32:30,247  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RemoveReadyFile (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.062ms.
+ 2019-09-10 13:32:30,265  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ViewReadyList.
+ 2019-09-10 13:32:30,285  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ViewReadyList executed in 20.313ms.
+ 2019-09-10 13:32:30,343  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RemoveReadyFile (A) in 136.8402ms
+ 2019-09-10 13:32:30,369  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 232.3188ms 200 text/html; charset=utf-8
+ 2019-09-10 13:32:34,067  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/  
+ 2019-09-10 13:32:34,091  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:32:34,210  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.Index (A) - Validation state: Valid
+ 2019-09-10 13:32:34,219  INFO DockerComposeMVC.Program.? [?] - MESSAGE: Someone just logged into the portal
+ 2019-09-10 13:32:34,234  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.Index (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 6.2963ms.
+ 2019-09-10 13:32:34,249  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view Index.
+ 2019-09-10 13:32:34,277  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view Index executed in 16.2629ms.
+ 2019-09-10 13:32:34,415  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.Index (A) in 250.137ms
+ 2019-09-10 13:32:34,442  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 370.1635ms 200 text/html; charset=utf-8
+ 2019-09-10 13:32:36,121  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ViewTemplateList  
+ 2019-09-10 13:32:36,144  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ViewTemplateList", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewTemplateList() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:32:36,216  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ViewTemplateList (A) - Validation state: Valid
+ 2019-09-10 13:32:36,238  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ViewTemplateList (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.9407ms.
+ 2019-09-10 13:32:36,264  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ViewTemplateList.
+ 2019-09-10 13:32:36,290  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ViewTemplateList (A) in 127.8642ms
+ 2019-09-10 13:32:36,338 ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.? [?] - MESSAGE: An unhandled exception has occurred while executing the request.
+ System.InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'System.Linq.OrderedEnumerable`2[DockerComposeMVC.Models.CompositeModel,System.String]', but this ViewDataDictionary instance requires a model item of type 'System.Collections.Generic.List`1[DockerComposeMVC.Models.CompositeModel]'.
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.EnsureCompatible(Object value)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary..ctor(ViewDataDictionary source, Object model, Type declaredModelType)
+   at lambda_method(Closure , ViewDataDictionary )
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.CreateViewDataDictionary(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-09-10 13:32:36,487  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 363.3519ms 500 text/html; charset=utf-8
+ 2019-09-10 13:34:14,943 DEBUG HttpsConnectionAdapter.? [?] - MESSAGE: Failed to authenticate HTTPS connection.
+ System.IO.IOException: Authentication failed because the remote party has closed the transport stream.
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[] buffer, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslStream.BeginAuthenticateAsServer(SslServerAuthenticationOptions sslServerAuthenticationOptions, CancellationToken cancellationToken, AsyncCallback asyncCallback, Object asyncState)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_0(SslServerAuthenticationOptions arg1, CancellationToken arg2, AsyncCallback callback, Object state)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncImpl[TArg1,TArg2](Func`5 beginMethod, Func`2 endFunction, Action`1 endAction, TArg1 arg1, TArg2 arg2, Object state, TaskCreationOptions creationOptions)
+   at System.Threading.Tasks.TaskFactory.FromAsync[TArg1,TArg2](Func`5 beginMethod, Action`1 endMethod, TArg1 arg1, TArg2 arg2, Object state, TaskCreationOptions creationOptions)
+   at System.Threading.Tasks.TaskFactory.FromAsync[TArg1,TArg2](Func`5 beginMethod, Action`1 endMethod, TArg1 arg1, TArg2 arg2, Object state)
+   at System.Net.Security.SslStream.AuthenticateAsServerAsync(SslServerAuthenticationOptions sslServerAuthenticationOptions, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-09-10 13:34:15,777  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/  
+ 2019-09-10 13:34:16,236  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:34:16,536  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.Index (A) - Validation state: Valid
+ 2019-09-10 13:34:16,544  INFO DockerComposeMVC.Program.? [?] - MESSAGE: Someone just logged into the portal
+ 2019-09-10 13:34:16,562  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.Index (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 6.6697ms.
+ 2019-09-10 13:34:16,628  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view Index.
+ 2019-09-10 13:34:17,019  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view Index executed in 422.0336ms.
+ 2019-09-10 13:34:17,111  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.Index (A) in 836.2105ms
+ 2019-09-10 13:34:17,163  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 1373.98ms 200 text/html; charset=utf-8
+ 2019-09-10 13:34:31,819  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ViewReadyList  
+ 2019-09-10 13:34:31,837  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ViewReadyList", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewReadyList() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:34:31,918  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ViewReadyList (A) - Validation state: Valid
+ 2019-09-10 13:34:31,938  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ViewReadyList (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 4.2638ms.
+ 2019-09-10 13:34:31,977  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ViewReadyList.
+ 2019-09-10 13:34:32,184  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ViewReadyList executed in 217.4095ms.
+ 2019-09-10 13:34:32,239  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ViewReadyList (A) in 356.0156ms
+ 2019-09-10 13:34:32,298  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 476.0603ms 200 text/html; charset=utf-8
+ 2019-09-10 13:34:35,996  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ReadyFileDetails?cName=Test123_Testing341_10.09.2019.yml  
+ 2019-09-10 13:34:36,035  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ReadyFileDetails", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ReadyFileDetails(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:34:36,125  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) - Validation state: Valid
+ 2019-09-10 13:34:36,160  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 6.3227ms.
+ 2019-09-10 13:34:36,193  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ReadyFileDetails.
+ 2019-09-10 13:34:36,233  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ReadyFileDetails executed in 59.3024ms.
+ 2019-09-10 13:34:36,294  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) in 206.1974ms
+ 2019-09-10 13:34:36,333  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 328.407ms 200 text/html; charset=utf-8
+ 2019-09-10 13:34:37,461  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RemoveReadyFile?FileName=Test123_Testing341_10.09.2019.yml  
+ 2019-09-10 13:34:37,536  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RemoveReadyFile", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RemoveReadyFile(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:34:37,646  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RemoveReadyFile (A) - Validation state: Valid
+ 2019-09-10 13:34:37,685  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RemoveReadyFile (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 4.8952ms.
+ 2019-09-10 13:34:37,713  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ViewReadyList.
+ 2019-09-10 13:34:37,783  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ViewReadyList executed in 25.8384ms.
+ 2019-09-10 13:34:37,819  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RemoveReadyFile (A) in 254.2237ms
+ 2019-09-10 13:34:37,865  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 388.0994ms 200 text/html; charset=utf-8
+ 2019-09-10 13:34:40,575  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/  
+ 2019-09-10 13:34:40,608  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:34:40,668  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.Index (A) - Validation state: Valid
+ 2019-09-10 13:34:40,674  INFO DockerComposeMVC.Program.? [?] - MESSAGE: Someone just logged into the portal
+ 2019-09-10 13:34:40,687  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.Index (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 8.0506ms.
+ 2019-09-10 13:34:40,703  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view Index.
+ 2019-09-10 13:34:40,737  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view Index executed in 12.9901ms.
+ 2019-09-10 13:34:40,856  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.Index (A) in 182.25ms
+ 2019-09-10 13:34:40,889  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 305.9006ms 200 text/html; charset=utf-8
+ 2019-09-10 13:34:42,214  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ViewTemplateList  
+ 2019-09-10 13:34:42,231  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ViewTemplateList", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewTemplateList() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:34:42,315  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ViewTemplateList (A) - Validation state: Valid
+ 2019-09-10 13:34:42,330  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ViewTemplateList (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.8937ms.
+ 2019-09-10 13:34:42,354  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ViewTemplateList.
+ 2019-09-10 13:34:42,382  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ViewTemplateList executed in 31.6049ms.
+ 2019-09-10 13:34:42,454  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ViewTemplateList (A) in 171.2853ms
+ 2019-09-10 13:34:42,486  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 266.2925ms 200 text/html; charset=utf-8
+ 2019-09-10 13:34:44,331  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/Status  
+ 2019-09-10 13:34:44,374  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 42.2124ms 404 
+ 2019-09-10 13:34:47,719  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/TemplateDetails?cName=selenium-hub.yml  
+ 2019-09-10 13:34:47,737  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "TemplateDetails", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult TemplateDetails(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:34:47,799  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.TemplateDetails (A) - Validation state: Valid
+ 2019-09-10 13:34:47,833  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.TemplateDetails (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 7.7108ms.
+ 2019-09-10 13:34:47,856  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view TemplateDetails.
+ 2019-09-10 13:34:47,912  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view TemplateDetails executed in 59.3071ms.
+ 2019-09-10 13:34:47,969  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.TemplateDetails (A) in 210.4818ms
+ 2019-09-10 13:34:48,013  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 281.2618ms 200 text/html; charset=utf-8
+ 2019-09-10 13:34:51,308  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/  
+ 2019-09-10 13:34:51,323  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:34:51,405  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.Index (A) - Validation state: Valid
+ 2019-09-10 13:34:51,417  INFO DockerComposeMVC.Program.? [?] - MESSAGE: Someone just logged into the portal
+ 2019-09-10 13:34:51,435  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.Index (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 8.2071ms.
+ 2019-09-10 13:34:51,453  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view Index.
+ 2019-09-10 13:34:51,473  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view Index executed in 19.8696ms.
+ 2019-09-10 13:34:51,533  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.Index (A) in 181.5684ms
+ 2019-09-10 13:34:51,555  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 239.1888ms 200 text/html; charset=utf-8
+ 2019-09-10 13:34:56,166  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:34:56,193  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:34:56,255  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:34:56,277  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 3.9054ms.
+ 2019-09-10 13:34:56,300  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:34:56,334  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 35.711ms.
+ 2019-09-10 13:34:56,383  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 166.7915ms
+ 2019-09-10 13:34:56,411  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 234.9045ms 200 text/html; charset=utf-8
+ 2019-09-10 13:35:00,022  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ViewReadyList  
+ 2019-09-10 13:35:00,036  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ViewReadyList", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewReadyList() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:35:00,090  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ViewReadyList (A) - Validation state: Valid
+ 2019-09-10 13:35:00,104  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ViewReadyList (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0912ms.
+ 2019-09-10 13:35:00,118  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ViewReadyList.
+ 2019-09-10 13:35:00,143  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ViewReadyList executed in 15.3846ms.
+ 2019-09-10 13:35:00,235  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ViewReadyList (A) in 153.8563ms
+ 2019-09-10 13:35:00,269  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 252.0403ms 200 text/html; charset=utf-8
+ 2019-09-10 13:35:04,510  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ReadyFileDetails?cName=selenium-hub_just_testing_10.09.2019.yml  
+ 2019-09-10 13:35:04,527  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ReadyFileDetails", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ReadyFileDetails(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:35:04,632  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) - Validation state: Valid
+ 2019-09-10 13:35:04,652  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0486ms.
+ 2019-09-10 13:35:04,697  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ReadyFileDetails.
+ 2019-09-10 13:35:04,726  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ReadyFileDetails executed in 35.9208ms.
+ 2019-09-10 13:35:04,860  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) in 274.4399ms
+ 2019-09-10 13:35:04,920  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 401.4716ms 200 text/html; charset=utf-8
+ 2019-09-10 13:35:06,953  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunComposeFile?cName=selenium-hub_just_testing_10.09.2019.yml  
+ 2019-09-10 13:35:06,998  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunComposeFile", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunComposeFile(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:35:07,087  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunComposeFile (A) - Validation state: Valid
+ 2019-09-10 13:35:07,617  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunComposeFile (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 503.4204ms.
+ 2019-09-10 13:35:07,664  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunComposeFile.
+ 2019-09-10 13:35:07,709  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunComposeFile executed in 63.2244ms.
+ 2019-09-10 13:35:07,776  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunComposeFile (A) in 727.743ms
+ 2019-09-10 13:35:07,915  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 927.5094ms 200 text/html; charset=utf-8
+ 2019-09-10 13:35:10,472  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:35:10,557  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:35:10,701  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:35:10,731  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 6.7977ms.
+ 2019-09-10 13:35:10,750  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:35:10,855  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 23.8837ms.
+ 2019-09-10 13:35:10,942  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 305.5865ms
+ 2019-09-10 13:35:10,991  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 521.7281ms 200 text/html; charset=utf-8
+ 2019-09-10 13:35:13,829  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/  
+ 2019-09-10 13:35:13,864  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:35:13,971  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.Index (A) - Validation state: Valid
+ 2019-09-10 13:35:13,981  INFO DockerComposeMVC.Program.? [?] - MESSAGE: Someone just logged into the portal
+ 2019-09-10 13:35:14,004  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.Index (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 14.183ms.
+ 2019-09-10 13:35:14,041  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view Index.
+ 2019-09-10 13:35:14,082  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view Index executed in 38.0644ms.
+ 2019-09-10 13:35:14,164  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.Index (A) in 263.0054ms
+ 2019-09-10 13:35:14,205  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 363.7344ms 200 text/html; charset=utf-8
+ 2019-09-10 13:35:15,810  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ViewReadyList  
+ 2019-09-10 13:35:15,857  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ViewReadyList", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewReadyList() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:35:16,020  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ViewReadyList (A) - Validation state: Valid
+ 2019-09-10 13:35:16,048  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ViewReadyList (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0723ms.
+ 2019-09-10 13:35:16,070  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ViewReadyList.
+ 2019-09-10 13:35:16,187  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ViewReadyList executed in 22.9105ms.
+ 2019-09-10 13:35:16,340  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ViewReadyList (A) in 419.6142ms
+ 2019-09-10 13:35:16,399  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 577.0097ms 200 text/html; charset=utf-8
+ 2019-09-10 13:35:18,782  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ReadyFileDetails?cName=wordpress.yml  
+ 2019-09-10 13:35:18,823  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ReadyFileDetails", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ReadyFileDetails(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:35:18,967  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) - Validation state: Valid
+ 2019-09-10 13:35:18,990  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.045ms.
+ 2019-09-10 13:35:19,018  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ReadyFileDetails.
+ 2019-09-10 13:35:19,053  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ReadyFileDetails executed in 31.4618ms.
+ 2019-09-10 13:35:19,147  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) in 195.1932ms
+ 2019-09-10 13:35:19,226  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 411.8409ms 200 text/html; charset=utf-8
+ 2019-09-10 13:35:20,398  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunComposeFile?cName=wordpress.yml  
+ 2019-09-10 13:35:20,419  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunComposeFile", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunComposeFile(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:35:20,518  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunComposeFile (A) - Validation state: Valid
+ 2019-09-10 13:35:21,070  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunComposeFile (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 527.553ms.
+ 2019-09-10 13:35:21,109  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunComposeFile.
+ 2019-09-10 13:35:21,199  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunComposeFile executed in 32.4864ms.
+ 2019-09-10 13:35:21,341  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunComposeFile (A) in 802.6102ms
+ 2019-09-10 13:35:21,508  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 1045.5967ms 200 text/html; charset=utf-8
+ 2019-09-10 13:35:26,256  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:35:26,308  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:35:26,668  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:35:26,746  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.9909ms.
+ 2019-09-10 13:35:26,817  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:35:26,951  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 74.1899ms.
+ 2019-09-10 13:35:27,029  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 609.1283ms
+ 2019-09-10 13:35:27,250  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 876.9725ms 200 text/html; charset=utf-8
+ 2019-09-10 13:37:23,411  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:37:23,429  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:37:23,505  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:37:26,229  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 2713.4177ms.
+ 2019-09-10 13:37:26,243  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:37:26,270  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 14.2829ms.
+ 2019-09-10 13:37:26,322  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 2869.0474ms
+ 2019-09-10 13:37:26,355  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 2938.307ms 200 text/html; charset=utf-8
+ 2019-09-10 13:37:26,513  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+ 2019-09-10 13:37:26,603  INFO Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.? [?] - MESSAGE: Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\umair.ahmed\source\repos\DockerComposeMVC\DockerComposeMVC\wwwroot\favicon.ico'
+ 2019-09-10 13:37:26,636  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 123.6802ms 200 image/x-icon
+ 2019-09-10 13:37:28,121  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/StopRunningFile?FileName=selenium-hub_just_testing_10.09.2019.yml  
+ 2019-09-10 13:37:28,156  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "StopRunningFile", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult StopRunningFile(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:37:28,237  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.StopRunningFile (A) - Validation state: Valid
+ 2019-09-10 13:37:34,417  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.StopRunningFile (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 6154.2068ms.
+ 2019-09-10 13:37:34,437  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:37:34,458  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 12.9403ms.
+ 2019-09-10 13:37:34,502  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.StopRunningFile (A) in 6299.2313ms
+ 2019-09-10 13:37:34,527  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 6408.3686ms 200 text/html; charset=utf-8
+ 2019-09-10 13:37:36,019  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/StopRunningFile?FileName=wordpress.yml  
+ 2019-09-10 13:37:36,049  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "StopRunningFile", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult StopRunningFile(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:37:36,106  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.StopRunningFile (A) - Validation state: Valid
+ 2019-09-10 13:37:42,522  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.StopRunningFile (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 6399.0325ms.
+ 2019-09-10 13:37:42,533  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:37:42,550  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 11.8458ms.
+ 2019-09-10 13:37:42,598  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.StopRunningFile (A) in 6534.1516ms
+ 2019-09-10 13:37:42,617  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 6595.0338ms 200 text/html; charset=utf-8
+ 2019-09-10 13:44:21,717 DEBUG HttpsConnectionAdapter.? [?] - MESSAGE: Failed to authenticate HTTPS connection.
+ System.IO.IOException: Authentication failed because the remote party has closed the transport stream.
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-09-10 13:44:22,959  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/  
+ 2019-09-10 13:44:23,502  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:44:23,761  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.Index (A) - Validation state: Valid
+ 2019-09-10 13:44:23,769  INFO DockerComposeMVC.Program.? [?] - MESSAGE: Someone just logged into the portal
+ 2019-09-10 13:44:23,789  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.Index (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 7.91ms.
+ 2019-09-10 13:44:23,878  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view Index.
+ 2019-09-10 13:44:24,151  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view Index executed in 324.9196ms.
+ 2019-09-10 13:44:24,340  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.Index (A) in 775.4043ms
+ 2019-09-10 13:44:24,394  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 1434.804ms 200 text/html; charset=utf-8
+ 2019-09-10 13:44:29,449  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ViewTemplateList  
+ 2019-09-10 13:44:29,464  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ViewTemplateList", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewTemplateList() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:44:29,541  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ViewTemplateList (A) - Validation state: Valid
+ 2019-09-10 13:44:29,559  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ViewTemplateList (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 4.0065ms.
+ 2019-09-10 13:44:29,583  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ViewTemplateList.
+ 2019-09-10 13:44:29,611  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ViewTemplateList executed in 36.133ms.
+ 2019-09-10 13:44:29,664  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ViewTemplateList (A) in 153.8049ms
+ 2019-09-10 13:44:29,690  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 237.3961ms 200 text/html; charset=utf-8
+ 2019-09-10 13:44:33,758  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/TemplateDetails?cName=ghostblog.yml  
+ 2019-09-10 13:44:33,789  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "TemplateDetails", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult TemplateDetails(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:44:33,863  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.TemplateDetails (A) - Validation state: Valid
+ 2019-09-10 13:44:33,880  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.TemplateDetails (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 5.2322ms.
+ 2019-09-10 13:44:33,908  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view TemplateDetails.
+ 2019-09-10 13:44:33,964  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view TemplateDetails executed in 70.3829ms.
+ 2019-09-10 13:44:33,982  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.TemplateDetails (A) in 176.1789ms
+ 2019-09-10 13:44:33,994  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 236.3269ms 200 text/html; charset=utf-8
+ 2019-09-10 13:44:41,061  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ViewReadyList  
+ 2019-09-10 13:44:41,080  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ViewReadyList", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewReadyList() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:44:41,133  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ViewReadyList (A) - Validation state: Valid
+ 2019-09-10 13:44:41,147  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ViewReadyList (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.8767ms.
+ 2019-09-10 13:44:41,165  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ViewReadyList.
+ 2019-09-10 13:44:41,323  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ViewReadyList executed in 165.0087ms.
+ 2019-09-10 13:44:41,373  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ViewReadyList (A) in 251.1362ms
+ 2019-09-10 13:44:41,400  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 338.0243ms 200 text/html; charset=utf-8
+ 2019-09-10 13:44:42,567  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ReadyFileDetails?cName=alpine.yml  
+ 2019-09-10 13:44:42,589  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ReadyFileDetails", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ReadyFileDetails(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:44:42,639  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) - Validation state: Valid
+ 2019-09-10 13:44:42,656  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.6843ms.
+ 2019-09-10 13:44:42,677  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ReadyFileDetails.
+ 2019-09-10 13:44:42,706  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ReadyFileDetails executed in 35.5952ms.
+ 2019-09-10 13:44:42,753  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) in 121.6773ms
+ 2019-09-10 13:44:42,774  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 201.5602ms 200 text/html; charset=utf-8
+ 2019-09-10 13:44:44,773  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunComposeFile?cName=alpine.yml  
+ 2019-09-10 13:44:44,796  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunComposeFile", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunComposeFile(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:44:44,847  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunComposeFile (A) - Validation state: Valid
+ 2019-09-10 13:44:45,364  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunComposeFile (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 505.539ms.
+ 2019-09-10 13:44:45,410  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunComposeFile.
+ 2019-09-10 13:44:45,445  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunComposeFile executed in 54.4676ms.
+ 2019-09-10 13:44:45,510  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunComposeFile (A) in 684.4704ms
+ 2019-09-10 13:44:45,538  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 762.8432ms 200 text/html; charset=utf-8
+ 2019-09-10 13:45:37,915 DEBUG HttpsConnectionAdapter.? [?] - MESSAGE: Failed to authenticate HTTPS connection.
+ System.IO.IOException: Authentication failed because the remote party has closed the transport stream.
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-09-10 13:45:37,935 DEBUG HttpsConnectionAdapter.? [?] - MESSAGE: Failed to authenticate HTTPS connection.
+ System.IO.IOException: Authentication failed because the remote party has closed the transport stream.
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-09-10 13:45:37,964  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:45:37,986  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:45:38,143  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:45:38,213  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 12.3563ms.
+ 2019-09-10 13:45:38,299  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:45:38,340  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 64.9056ms.
+ 2019-09-10 13:45:38,390  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 367.8575ms
+ 2019-09-10 13:45:38,431  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 454.5647ms 200 text/html; charset=utf-8
+ 2019-09-10 13:49:39,554 DEBUG HttpsConnectionAdapter.? [?] - MESSAGE: Failed to authenticate HTTPS connection.
+ System.IO.IOException: Authentication failed because the remote party has closed the transport stream.
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[] buffer, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslStream.BeginAuthenticateAsServer(SslServerAuthenticationOptions sslServerAuthenticationOptions, CancellationToken cancellationToken, AsyncCallback asyncCallback, Object asyncState)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_0(SslServerAuthenticationOptions arg1, CancellationToken arg2, AsyncCallback callback, Object state)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncImpl[TArg1,TArg2](Func`5 beginMethod, Func`2 endFunction, Action`1 endAction, TArg1 arg1, TArg2 arg2, Object state, TaskCreationOptions creationOptions)
+   at System.Threading.Tasks.TaskFactory.FromAsync[TArg1,TArg2](Func`5 beginMethod, Action`1 endMethod, TArg1 arg1, TArg2 arg2, Object state, TaskCreationOptions creationOptions)
+   at System.Threading.Tasks.TaskFactory.FromAsync[TArg1,TArg2](Func`5 beginMethod, Action`1 endMethod, TArg1 arg1, TArg2 arg2, Object state)
+   at System.Net.Security.SslStream.AuthenticateAsServerAsync(SslServerAuthenticationOptions sslServerAuthenticationOptions, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-09-10 13:49:40,302  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/  
+ 2019-09-10 13:49:40,772  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:49:41,068  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.Index (A) - Validation state: Valid
+ 2019-09-10 13:49:41,077  INFO DockerComposeMVC.Program.? [?] - MESSAGE: Someone just logged into the portal
+ 2019-09-10 13:49:41,094  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.Index (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 7.9823ms.
+ 2019-09-10 13:49:41,187  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view Index.
+ 2019-09-10 13:49:41,460  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view Index executed in 302.0707ms.
+ 2019-09-10 13:49:41,550  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.Index (A) in 756.2205ms
+ 2019-09-10 13:49:41,657  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 1291.1095ms 200 text/html; charset=utf-8
+ 2019-09-10 13:49:47,671  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ViewReadyList  
+ 2019-09-10 13:49:47,692  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ViewReadyList", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewReadyList() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:49:47,761  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ViewReadyList (A) - Validation state: Valid
+ 2019-09-10 13:49:47,776  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ViewReadyList (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 2.1996ms.
+ 2019-09-10 13:49:47,797  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ViewReadyList.
+ 2019-09-10 13:49:47,962  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ViewReadyList executed in 170.6725ms.
+ 2019-09-10 13:49:47,975  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ViewReadyList (A) in 269.282ms
+ 2019-09-10 13:49:47,989  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 319.1662ms 200 text/html; charset=utf-8
+ 2019-09-10 13:49:49,359  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/ReadyFileDetails?cName=alpine.yml  
+ 2019-09-10 13:49:49,390  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "ReadyFileDetails", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ReadyFileDetails(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:49:49,466  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) - Validation state: Valid
+ 2019-09-10 13:49:49,481  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 1.5477ms.
+ 2019-09-10 13:49:49,500  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view ReadyFileDetails.
+ 2019-09-10 13:49:49,526  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view ReadyFileDetails executed in 32.9072ms.
+ 2019-09-10 13:49:49,570  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.ReadyFileDetails (A) in 145.2315ms
+ 2019-09-10 13:49:49,588  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 226.169ms 200 text/html; charset=utf-8
+ 2019-09-10 13:49:53,047  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunComposeFile?cName=alpine.yml  
+ 2019-09-10 13:49:53,064  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunComposeFile", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunComposeFile(System.String) on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:49:53,166  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunComposeFile (A) - Validation state: Valid
+ 2019-09-10 13:49:53,699  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunComposeFile (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 508.3701ms.
+ 2019-09-10 13:49:53,727  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunComposeFile.
+ 2019-09-10 13:49:53,755  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunComposeFile executed in 34.2411ms.
+ 2019-09-10 13:49:53,771  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunComposeFile (A) in 694.9026ms
+ 2019-09-10 13:49:53,786  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 740.1172ms 200 text/html; charset=utf-8
+ 2019-09-10 13:49:55,068 ERROR DockerComposeMVC.Program.? [?] - MESSAGE: Could not start composite service System.Collections.Generic.List`1[System.String] - result: Volume data declared as external, but could not be found. Please create the volume manually using `docker volume create --name=data` and try again.
+ 2019-09-10 13:49:58,884  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/Home/RunningReadyFiles  
+ 2019-09-10 13:49:58,923  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "RunningReadyFiles", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RunningReadyFiles() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:49:59,047  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) - Validation state: Valid
+ 2019-09-10 13:49:59,079  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 9.7983ms.
+ 2019-09-10 13:49:59,101  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view RunningReadyFiles.
+ 2019-09-10 13:49:59,124  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view RunningReadyFiles executed in 26.5409ms.
+ 2019-09-10 13:49:59,163  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.RunningReadyFiles (A) in 194.5582ms
+ 2019-09-10 13:49:59,218  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 324.2143ms 200 text/html; charset=utf-8
  

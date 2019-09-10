@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  ghost:
+    image: ghost:latest
+    ports:
+      - ${{Ghost Host Port}}:2368
+    volumes:
+      - ghost-data:/var/lib/ghost/content/
+
+volumes:
+  Ghost-data:

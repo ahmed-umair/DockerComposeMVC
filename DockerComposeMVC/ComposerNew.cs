@@ -30,7 +30,19 @@ namespace DockerComposeMVC
                 {
                     try
                     {
-                        Task compose = new Task(() => searchResult.Service.Start());
+                        Task compose = new Task(() =>
+                        {
+                            try
+                            {
+                                searchResult.Service.Start();
+                                
+                            }
+                            catch (Exception e)
+                            {
+                                Program.logger.Error(e.Message);
+                            }
+                        }
+                        );
                         compose.Start();
                         Thread.Sleep(500);
                         return searchResult.Service.State.ToString();
@@ -78,7 +90,7 @@ namespace DockerComposeMVC
                 {
                     composite.UpdateContainersStatus();
                 }
-                return searchResult;
+                return searchResult.OrderBy(service => service.dateTimeAdded).ToList();
             }
             catch
             {
@@ -98,7 +110,7 @@ namespace DockerComposeMVC
             {
                 return "ERR_COMPOSE_FILE_NOT_FOUND";
             }
-            
+
         }
 
         ///CATCH NOT FOUND EXCEPTION WHEREVER THIS IS CALLED
@@ -127,7 +139,7 @@ namespace DockerComposeMVC
                 ///Check ServiceRunningState enum from the DockerFluent library
                 if (GetServiceStatus(filename) is "Starting" || GetServiceStatus(filename) is "Running")
                 {
-                    while(GetServiceStatus(filename) is "Starting")
+                    while (GetServiceStatus(filename) is "Starting")
                     {
                         Thread.Sleep(100);
                     }

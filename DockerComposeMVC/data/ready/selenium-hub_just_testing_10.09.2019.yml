@@ -4,12 +4,12 @@ services:
   netcore: 
     image: mcr.microsoft.com/dotnet/core/samples:aspnetapp
     ports:
-      - "${{ASP App Port}}:80"
+      - "8500:80"
   #SELENIUM GRID HUB
   hub:
     image: selenium/hub
     ports:
-      - "${{Selenium Hub Port}}:4444"
+      - "4444:4444"
   #SELENIUM GRID NODE FIREFOX
   firefox:
     image: selenium/node-firefox
@@ -25,7 +25,7 @@ services:
   firefox-debug:
     image: selenium/node-firefox-debug
     ports: 
-      - "${{Firefox Debug Port}}:5900"
+      - "5903:5900"
     depends_on: 
       - hub
     environment: 
@@ -49,7 +49,7 @@ services:
   chrome-debug:
     image: selenium/node-chrome-debug
     ports:
-    - "${{Chrome Debug Port}}:5900"
+    - "5906:5900"
     depends_on: 
       - hub
     environment: 
@@ -57,4 +57,4 @@ services:
       NODE_MAX_SESSION: 3
       HUB_HOST: hub
     links:
-    - ${{Chrome Debug Link Connection}}
+    - hub

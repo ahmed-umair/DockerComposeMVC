@@ -30,7 +30,7 @@ namespace DockerComposeMVC
 
             foreach (var FileName in FileNames)
             {
-                
+
                 var composite = LoadCompositeFromSingleFile(FileName, IsTemplate);
                 list.Add(composite);
             }
@@ -145,7 +145,7 @@ namespace DockerComposeMVC
                         container.Volumes = jsonContainer["volumes"].ToObject<List<string>>();
                     }
                 }
-                
+
                 list.Add(container);
             };
             return list;
@@ -166,7 +166,7 @@ namespace DockerComposeMVC
                     Program.logger.Debug("Attempting to save file " + TemplateName + @" in the \data\templates\ folder");
                     File.WriteAllText(Path.Combine(Program.ComposeTemplateDir, TemplateName), fileString);
                     Program.logger.Debug("Saved file " + TemplateName + @" in the \data\templates\ folder");
-                    
+
                     AddComposeTemplateToList(TemplateName);
                     status = "SUCCESS";
                     return true;
@@ -188,8 +188,8 @@ namespace DockerComposeMVC
         {
             //try
             //{
-                File.Delete(Path.Combine(Program.ComposeTemplateDir, FileName));
-                return true;
+            File.Delete(Path.Combine(Program.ComposeTemplateDir, FileName));
+            return true;
             //}
             //catch
             //{
@@ -224,10 +224,9 @@ namespace DockerComposeMVC
                 var searchResult = ComposerNew.TemplatesList.Single(service => service.Name == FileName);
                 //if (RemoveFileFromTemplatesFolder(searchResult.Name))
                 //{
-                    ComposerNew.TemplatesList.Remove(searchResult);
+                if (ComposerNew.TemplatesList.Remove(searchResult))
                     return true;
                 //}
-
                 return false;
             }
             catch (Exception e)
@@ -278,7 +277,7 @@ namespace DockerComposeMVC
             string filename = templateName.Substring(0, templateName.Length - 4) + "_" + instanceName + "_" + System.DateTime.Now.ToShortDateString() + ".yml";
             try
             {
-                Program.logger.Debug("Attempting to save file " + filename + @" in the \data\ready\ folder" );
+                Program.logger.Debug("Attempting to save file " + filename + @" in the \data\ready\ folder");
                 File.WriteAllText(Path.Combine(Program.ComposeReadyDir, filename), contents);
                 Program.logger.Debug("Saved file " + filename + @" in the \data\ready\ folder");
 

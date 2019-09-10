@@ -30,25 +30,7 @@ namespace DockerComposeMVC.Controllers
             var composite = ComposerNew.GetSingleCompositeDetail("compose-destination.yml", false);
             return Ok(composite);
         }
-        public IActionResult Status()
-        {
 
-            if (Composer.GetStatus() == "Running")
-            {
-                ViewData["Status"] = true;
-                ViewData["Title"] = "Running";
-                ViewData["Message"] = "Your multi-container application is running";
-            }
-            else
-            {
-                ViewData["Status"] = false;
-                ViewData["Title"] = "Stopped";
-                ViewData["Message"] = "You do not have a multi-container application running";
-            }
-            var containers = Composer.GetDetailedStatus();
-
-            return View(containers);
-        }
 
         public IActionResult Upload()
         {
@@ -102,12 +84,14 @@ namespace DockerComposeMVC.Controllers
 
         public IActionResult ViewTemplateList()
         {
-            return View(ComposerNew.TemplatesList);
+            List<CompositeModel> TemplatesList = ComposerNew.TemplatesList.OrderBy(service => service.Name).ToList();
+            return View(TemplatesList);
         }
 
         public IActionResult ViewReadyList()
         {
-            return View(ComposerNew.ReadyList);
+            List<CompositeModel> ReadyList = ComposerNew.ReadyList.OrderBy(service => service.Name).ToList();
+            return View(ReadyList);
         }
 
         //[Route("{cName}")]
@@ -161,11 +145,6 @@ namespace DockerComposeMVC.Controllers
 
         }
 
-        public IActionResult StatusDebug()
-        {
-            return Ok(Composer.GetStatus() + " " + Composer.GetStatus().Length);
-        }
-
         public IActionResult UploadCompose()
         {
             return View();
@@ -201,9 +180,9 @@ namespace DockerComposeMVC.Controllers
             {
                 verificationResult = ComposerNew.VerifyContainer(filename);
             }
-            
-                
-            
+
+
+
 
             if (!verificationResult)
             {
@@ -222,7 +201,7 @@ namespace DockerComposeMVC.Controllers
         public IActionResult DebugListReady()
         {
             var list = new List<String>();
-            foreach(var service in ComposerNew.ReadyList)
+            foreach (var service in ComposerNew.ReadyList)
             {
                 list.Add(service.Name);
             }
