@@ -63,7 +63,18 @@
                                     <ul>
                                         @foreach (string pair in (List<string>)container.EnvironmentVariables)
                                         {
-                                            <li>@pair</li>
+                                            String[] pairs = pair.Split("=");
+                                            <li>@pairs[0] = 
+                                                @if(pairs[1][0] != '$'){
+                                                    @pairs[1]
+                                                }
+                                                else {
+                                                String parameter = pairs[1].Substring(3, pairs[1].Length - 5);
+                                                <span style="background-color: forestgreen; color: white; border-radius: 10px; padding: 0 5px 0 5px;">
+                                                    @parameter
+                                                </span>
+                                                }
+                                            </li>
                                         }
                                     </ul>
                                 </li>
@@ -75,7 +86,16 @@
                                     <ul>
                                         @foreach (KeyValuePair<string, string> pair in (Dictionary<string, string>)container.EnvironmentVariables)
                                         {
-                                            <li>@pair.Key : @pair.Value</li>
+                                            <li>@pair.Key :
+                                                @if(pair.Value[0] != '$'){
+                                                    @pair.Value
+                                                }
+                                                else {
+                                                <span style="background-color: forestgreen; color: white; border-radius: 10px; padding: 0 5px 0 5px;">
+                                                    @pair.Value.Substring(3,pair.Value.Length - 5)
+                                                </span>
+                                                }
+                                            </li>
                                         }
                                     </ul>
                                 </li>
@@ -107,8 +127,21 @@
                                         {
                                             @foreach (KeyValuePair<string, string> val in (Dictionary<string, string>)pair)
                                             {
-                                                <li>@val.Key : @val.Value</li>
-                                            }
+                                                <li>
+                                                    @val.Key :
+                                                @if (val.Value[0] != '$')
+                                                {
+                                                    @val.Value
+                                                }
+                                                else
+                                                {
+                                                    <span style="background-color: forestgreen; color: white; border-radius: 10px; padding: 0 5px 0 5px;">
+                                                        @val.Value.Substring(3, val.Value.Length - 5)
+                                                    </span>
+                                                }
+                                            </li>
+
+                                        }
                                         }
                                     </ul>
                                 </li>
