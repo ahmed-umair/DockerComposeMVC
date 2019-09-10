@@ -72,12 +72,13 @@ namespace DockerComposeMVC.Controllers
             //    }
             //}
             String filePath = await ComposerNew.FilePathAsync(file);
-            StringValues filename;
+            StringValues filename, cFileName;
             bool result = false;
             string contents = System.IO.File.ReadAllText(filePath);
             form.TryGetValue("destFileName", out filename);
+            form.TryGetValue("file", out cFileName);
             String[] parameters = ComposerNew.ExtractParameters(contents, out result);
-
+            
             if (result == false)
             {
                 return View("AddParameters");
@@ -85,14 +86,15 @@ namespace DockerComposeMVC.Controllers
 
             try
             {
-                System.IO.File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "temp/" + filename + ".yaml"), contents);
+                System.IO.File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "temp/" + filename + ".yml"), contents);
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e.Message);
             }
             ViewData["fileString"] = contents;
-            ViewData["fileName"] = filename;
+            ViewData["FileName"] = filename;
+            //ViewData["templateName"] = cFileName;
             return View("AddParameters", parameters);
         }
 
@@ -169,13 +171,29 @@ namespace DockerComposeMVC.Controllers
         public IActionResult CreateCustom([FromForm] Dictionary<string, string> dict, [FromForm] String templateName, [FromForm] String instanceName)
         {
             
-            String tempPath = Path.Combine(Directory.GetCurrentDirectory(), "temp/" + templateName);
+            String tempPath = Path.Combine(Directory.GetCurrentDirectory(), @"data\templates\" + templateName);
             String fileString = System.IO.File.ReadAllText(tempPath);
 
             string finalComposeString = ComposerNew.ReplaceParams(fileString, dict);
             var filename = ComposeFileOperationsNew.WriteFileToReadyFolder(finalComposeString, templateName, instanceName);
+            ComposerNew.StartService(filename);
+            
 
-            ComposeFileOperationsNew.WriteFileToReadyFolder(finalComposeString, templateName, instanceName);
+            return View("RunComposeFile");
+        }
+
+        public IActionResult VerifyUploadedTemplate([FromForm] Dictionary<string, string> dict, [FromForm] String templateName)
+        {
+            templateName = templateName + ".yml";
+            Debug.WriteLine("--------------------");
+            Debug.WriteLine(templateName);
+            
+            String tempPath = Path.Combine(Directory.GetCurrentDirectory(), @"temp\" + templateName);
+            String fileString = System.IO.File.ReadAllText(tempPath);
+
+            string finalComposeString = ComposerNew.ReplaceParams(fileString, dict);
+            var filename = ComposeFileOperationsNew.WriteFileToReadyFolder(finalComposeString, templateName, "test");
+
             bool verificationResult = false;
             if (filename != "ERR_UNABLE_TO_WRITE_TO_FILE")
             {
@@ -192,7 +210,8 @@ namespace DockerComposeMVC.Controllers
                 ComposeFileOperationsNew.AddComposeTemplateToList(filename);
             }
 
-            return View("SubmitNew", verificationResult);
+
+            return Ok(verificationResult);
         }
 
         public IActionResult DebugListReady()

@@ -120,13 +120,14 @@ namespace DockerComposeMVC
 
         public static bool VerifyContainer(string filename)
         {
-            ComposeFileOperationsNew.AddToReadyList(filename);
             ComposerNew.StartService(filename);
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
 
             ///Check ServiceRunningState enum from the DockerFluent library
             if (GetServiceStatus(filename) is "Starting" || GetServiceStatus(filename) is "Running")
             {
+                Thread.Sleep(1000);
+                StopService(filename);
                 return true;
             }
             return false;

@@ -123,9 +123,7 @@ namespace DockerComposeMVC
                         container.EnvironmentVariables = jsonContainer["environment"].ToObject<Dictionary<string, string>>();
                     }
                 }
-
-
-
+                
                 //add port mappings
                 if (!(jsonContainer["ports"] is null))
                 {
@@ -186,21 +184,16 @@ namespace DockerComposeMVC
 
         public static bool AddToReadyList(string FileName)
         {
-            try
-            {
-                var newComposite = LoadCompositeFromSingleFile(Path.Combine(Directory.GetCurrentDirectory(), @"data\ready") + "\\" + FileName, true);
-                if (ComposerNew.ReadyList.Contains(newComposite))
+            
+                var newComposite = LoadCompositeFromSingleFile(Path.Combine(Directory.GetCurrentDirectory(), @"data\ready") + "\\" + FileName, false);
+                if (!ComposerNew.ReadyList.Contains(newComposite))
                 {
                     ComposerNew.ReadyList.Add(newComposite);
                     return true;
                 }
                 return false;
-            }
-            catch (Exception e)
-            {
-                //System.Diagnostics.Debug.WriteLine(e.Message);
-                return false;
-            }
+            
+            
         }
         public static bool RemoveFromReadyList(string FileName)
         {
@@ -224,8 +217,10 @@ namespace DockerComposeMVC
         {
             try
             {
-                string filename = templateName + "_" + instanceName + "_" + System.DateTime.Now + ".yml";
+                string filename = templateName.Substring(0,templateName.Length - 4) + "_" + instanceName + "_" + System.DateTime.Now.ToShortDateString() + ".yml";
                 File.WriteAllText(Path.GetFullPath(Directory.GetCurrentDirectory() + @"\data\ready\" + filename), contents);
+                System.Diagnostics.Debug.WriteLine("-------------------------");
+                System.Diagnostics.Debug.WriteLine(filename);
                 AddToReadyList(filename);
                 return filename;
             }
