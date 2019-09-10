@@ -91,15 +91,15 @@ namespace DockerComposeMVC
         {
             try
             {
-                var searchResult = ReadyList.Single(service => service.Name == ServiceName);
+                var searchResult = ReadyList.Single(service => service.Name == ServiceName && service.Service.State == ServiceRunningState.Running);
                 searchResult.Service.Stop();
-                //ResetContainerStatus(searchResult.Service);
+                return "stopped";
             }
             catch
             {
                 return "ERR_COMPOSE_FILE_NOT_FOUND";
             }
-            return "stopped";
+            
         }
 
         ///CATCH NOT FOUND EXCEPTION WHEREVER THIS IS CALLED
@@ -120,15 +120,22 @@ namespace DockerComposeMVC
 
         public static bool VerifyContainer(string filename)
         {
-            ComposerNew.StartService(filename);
-            Thread.Sleep(1000);
-
-            ///Check ServiceRunningState enum from the DockerFluent library
-            if (GetServiceStatus(filename) is "Starting" || GetServiceStatus(filename) is "Running")
+            if (!(GetServiceStatus(filename) is "Starting" || GetServiceStatus(filename) is "Running"))
             {
-                Thread.Sleep(1000);
-                StopService(filename);
-                return true;
+                ComposerNew.StartService(filename);
+                Thread.Sleep(100);
+
+                ///Check ServiceRunningState enum from the DockerFluent library
+                if (GetServiceStatus(filename) is "Starting" || GetServiceStatus(filename) is "Running")
+                {
+                    while(GetServiceStatus(filename) is "Starting")
+                    {
+                        Thread.Sleep(100);
+                    }
+                    var result = StopService(filename);
+                    return true;
+                }
+                return false;
             }
             return false;
         }
