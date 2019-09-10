@@ -12,7 +12,6 @@ services:
       - "${{AppUsername}}:4444"
   #SELENIUM GRID NODE FIREFOX
   firefox:
-    restart: always
     image: selenium/node-firefox
     depends_on: 
       - hub
@@ -24,7 +23,6 @@ services:
     - hub
   #SELENIUM GRID NODE FIREFOX DEBUG
   firefox-debug:
-    restart: always
     image: selenium/node-firefox-debug
     ports: 
       - "${{AppPassword}}:5900"
@@ -39,7 +37,6 @@ services:
   #CHROME NODES
   chrome:
     image: selenium/node-chrome
-    restart: always
     depends_on: 
       - hub
     environment: 
@@ -51,7 +48,6 @@ services:
   #CHROME DEBUG
   chrome-debug:
     image: selenium/node-chrome-debug
-    restart: always
     ports:
     - "${{SeleniumHubPort}}:5900"
     depends_on: 
