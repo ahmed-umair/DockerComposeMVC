@@ -27,7 +27,7 @@ namespace DockerComposeMVC
             var list = new List<CompositeModel>();
             var FolderPath = directory;
             DirectoryInfo dirInfo = new DirectoryInfo(directory);
-            FileInfo[] fileNames = dirInfo.GetFiles().OrderByDescending(p=> p.CreationTime).ToArray();
+            FileInfo[] fileNames = dirInfo.GetFiles().OrderByDescending(p => p.CreationTime).ToArray();
 
             foreach (var FileName in fileNames)
             {
@@ -62,7 +62,8 @@ namespace DockerComposeMVC
                 Name = name,
                 FilePath = FilePath,
                 ContainersFromFile = JSONtoContainers(json),
-                IsTemplate = IsTemplate
+                IsTemplate = IsTemplate,
+                dateTimeAdded = DateTime.UtcNow
             };
 
             if (!IsTemplate)
@@ -122,7 +123,7 @@ namespace DockerComposeMVC
                         container.EnvironmentVariables = jsonContainer["environment"].ToObject<Dictionary<string, string>>();
                     }
                 }
-                
+
                 //add port mappings
                 if (!(jsonContainer["ports"] is null))
                 {
@@ -147,13 +148,54 @@ namespace DockerComposeMVC
             };
             return list;
         }
+        public static bool AddToTemplatesFromFile(string SourcePath, string TemplateName, out string status)
+        {
+            try
+            {
+                var fileString = File.ReadAllText(SourcePath);
+                if (File.Exists(Path.Combine(Program.ComposeTemplateDir, TemplateName)))
+                {
+                    status = "ERR_TEMPLATE_EXISTS";
+                    return false;
+                }
 
+                try
+                {
+                    File.WriteAllText(Path.Combine(Program.ComposeTemplateDir, TemplateName), fileString);
+                    AddComposeTemplateToList(TemplateName);
+                    status = "SUCCESS";
+                    return true;
+                }
+                catch
+                {
+                    status = "ERR_WRITE_FAILED";
+                    return false;
+                }
+            }
+            catch
+            {
+                status = "ERR_READ_FAILED_FROM_TEMPORARY";
+                return false;
+            }
+        }
+
+        public static bool RemoveFileFromTemplatesFolder(string FileName)
+        {
+            try { 
+                File.Delete(Path.Combine(Program.ComposeTemplateDir, FileName));
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public static bool AddComposeTemplateToList(string FileName)
         {
             try
             {
                 var newComposite = LoadCompositeFromSingleFile(Path.Combine(Program.ComposeTemplateDir, FileName), true);
-                if (ComposerNew.TemplatesList.Contains(newComposite))
+                if (!ComposerNew.TemplatesList.Contains(newComposite))
                 {
                     ComposerNew.TemplatesList.Add(newComposite);
                     return true;
@@ -167,11 +209,12 @@ namespace DockerComposeMVC
             }
         }
 
-        public static bool RemoveComposeTemplate(string FileName)
+        public static bool RemoveComposeTemplateFromList(string FileName)
         {
             try
             {
                 var searchResult = ComposerNew.TemplatesList.Single(service => service.Name == FileName);
+                RemoveFileFromTemplatesFolder(searchResult.Name);
                 ComposerNew.TemplatesList.Remove(searchResult);
                 return true;
             }
@@ -183,16 +226,16 @@ namespace DockerComposeMVC
 
         public static bool AddToReadyList(string FileName)
         {
-            
-                var newComposite = LoadCompositeFromSingleFile(Path.Combine(Program.ComposeReadyDir, FileName), false);
-                if (!ComposerNew.ReadyList.Contains(newComposite))
-                {
-                    ComposerNew.ReadyList.Add(newComposite);
-                    return true;
-                }
-                return false;
-            
-            
+
+            var newComposite = LoadCompositeFromSingleFile(Path.Combine(Program.ComposeReadyDir, FileName), false);
+            if (!ComposerNew.ReadyList.Contains(newComposite))
+            {
+                ComposerNew.ReadyList.Add(newComposite);
+                return true;
+            }
+            return false;
+
+
         }
         public static bool RemoveFromReadyList(string FileName)
         {
@@ -218,7 +261,7 @@ namespace DockerComposeMVC
         {
             try
             {
-                string filename = templateName.Substring(0,templateName.Length - 4) + "_" + instanceName + "_" + System.DateTime.Now.ToShortDateString() + ".yml";
+                string filename = templateName.Substring(0, templateName.Length - 4) + "_" + instanceName + "_" + System.DateTime.Now.ToShortDateString() + ".yml";
                 File.WriteAllText(Path.Combine(Program.ComposeReadyDir, filename), contents);
                 System.Diagnostics.Debug.WriteLine("-------------------------");
                 System.Diagnostics.Debug.WriteLine(filename);
@@ -245,7 +288,8 @@ namespace DockerComposeMVC
                 }
                 return false;
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 return false;
             }
         }

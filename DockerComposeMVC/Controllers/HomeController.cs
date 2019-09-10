@@ -190,7 +190,7 @@ namespace DockerComposeMVC.Controllers
 
             String tempPath = Path.Combine(Program.ComposeTemporaryDir, templateName);
             String fileString = System.IO.File.ReadAllText(tempPath);
-
+            String writeStatus = "";
             string finalComposeString = ComposerNew.ReplaceParams(fileString, dict);
             var filename = ComposeFileOperationsNew.WriteFileToReadyFolder(finalComposeString, templateName, "test");
 
@@ -207,8 +207,7 @@ namespace DockerComposeMVC.Controllers
             }
             else
             {
-
-                ComposeFileOperationsNew.AddComposeTemplateToList(filename);
+                ComposeFileOperationsNew.AddToTemplatesFromFile(Path.Combine(Program.ComposeTemporaryDir, templateName), templateName, out writeStatus);
             }
 
             return Ok(verificationResult);
