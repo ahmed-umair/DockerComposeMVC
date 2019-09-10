@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using log4net;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -16,7 +17,8 @@ namespace DockerComposeMVC
         public static readonly string ComposeTemplateDir = Path.GetFullPath("data/templates");
         public static readonly string ComposeReadyDir = Path.GetFullPath("data/ready");
         public static readonly string ComposeTemporaryDir = Path.GetFullPath("temp");
-        
+        public static readonly log4net.ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();

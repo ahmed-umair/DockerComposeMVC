@@ -1,0 +1,80 @@
+Failed to authenticate HTTPS connection.
+System.IO.IOException: Authentication failed because the remote party has closed the transport stream.
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[] buffer, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslStream.BeginAuthenticateAsServer(SslServerAuthenticationOptions sslServerAuthenticationOptions, CancellationToken cancellationToken, AsyncCallback asyncCallback, Object asyncState)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_0(SslServerAuthenticationOptions arg1, CancellationToken arg2, AsyncCallback callback, Object state)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncImpl[TArg1,TArg2](Func`5 beginMethod, Func`2 endFunction, Action`1 endAction, TArg1 arg1, TArg2 arg2, Object state, TaskCreationOptions creationOptions)
+   at System.Threading.Tasks.TaskFactory.FromAsync[TArg1,TArg2](Func`5 beginMethod, Action`1 endMethod, TArg1 arg1, TArg2 arg2, Object state, TaskCreationOptions creationOptions)
+   at System.Threading.Tasks.TaskFactory.FromAsync[TArg1,TArg2](Func`5 beginMethod, Action`1 endMethod, TArg1 arg1, TArg2 arg2, Object state)
+   at System.Net.Security.SslStream.AuthenticateAsServerAsync(SslServerAuthenticationOptions sslServerAuthenticationOptions, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+Request starting HTTP/1.1 GET https://localhost:5001/  
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DockerComposeMVC.Controllers.HomeController (A).
+Executing action method DockerComposeMVC.Controllers.HomeController.Index (A) - Validation state: Valid
+Someone just logged into the portal
+Executed action method DockerComposeMVC.Controllers.HomeController.Index (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 21.8607ms.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 599.0542ms.
+Executed action DockerComposeMVC.Controllers.HomeController.Index (A) in 1236.146ms
+Request finished in 2154.0282ms 200 text/html; charset=utf-8
+2019-09-10 13:12:01,403 DEBUG HttpsConnectionAdapter.? [?] - MESSAGE: Failed to authenticate HTTPS connection.
+ System.IO.IOException: Authentication failed because the remote party has closed the transport stream.
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-09-10 13:12:01,403 DEBUG HttpsConnectionAdapter.? [?] - MESSAGE: Failed to authenticate HTTPS connection.
+ System.IO.IOException: Authentication failed because the remote party has closed the transport stream.
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-09-10 13:12:02,840  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/  
+ 2019-09-10 13:12:03,430  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:12:03,688  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.Index (A) - Validation state: Valid
+ 2019-09-10 13:12:03,698  INFO DockerComposeMVC.Program.? [?] - MESSAGE: Someone just logged into the portal
+ 2019-09-10 13:12:03,717  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.Index (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 9.5138ms.
+ 2019-09-10 13:12:03,842  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view Index.
+ 2019-09-10 13:12:04,145  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view Index executed in 386.8907ms.
+ 2019-09-10 13:12:04,245  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.Index (A) in 785.772ms
+ 2019-09-10 13:12:04,314  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 1477.4851ms 200 text/html; charset=utf-8
+ 2019-09-10 13:15:45,766 DEBUG HttpsConnectionAdapter.? [?] - MESSAGE: Failed to authenticate HTTPS connection.
+ System.IO.IOException: Authentication failed because the remote party has closed the transport stream.
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-09-10 13:15:46,764  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request starting HTTP/1.1 GET https://localhost:5001/  
+ 2019-09-10 13:15:47,314  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DockerComposeMVC.Controllers.HomeController (A).
+ 2019-09-10 13:15:47,581  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executing action method DockerComposeMVC.Controllers.HomeController.Index (A) - Validation state: Valid
+ 2019-09-10 13:15:47,609  INFO DockerComposeMVC.Program.? [?] - MESSAGE: Someone just logged into the portal
+ 2019-09-10 13:15:47,675  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action method DockerComposeMVC.Controllers.HomeController.Index (A), returned result Microsoft.AspNetCore.Mvc.ViewResult in 23.668ms.
+ 2019-09-10 13:15:47,862  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executing ViewResult, running view Index.
+ 2019-09-10 13:15:48,384  INFO Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.? [?] - MESSAGE: Executed ViewResult - view Index executed in 617.5046ms.
+ 2019-09-10 13:15:48,434  INFO Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.? [?] - MESSAGE: Executed action DockerComposeMVC.Controllers.HomeController.Index (A) in 1086.6648ms
+ 2019-09-10 13:15:48,478  INFO Microsoft.AspNetCore.Hosting.Internal.WebHost.? [?] - MESSAGE: Request finished in 1711.3607ms 200 text/html; charset=utf-8
+ 

@@ -26,12 +26,12 @@ namespace DockerComposeMVC
             var config = Configuration.GetConfig();
             var list = new List<CompositeModel>();
             var FolderPath = directory;
-            DirectoryInfo dirInfo = new DirectoryInfo(directory);
-            FileInfo[] fileNames = dirInfo.GetFiles().OrderByDescending(p => p.CreationTime).ToArray();
+            string[] FileNames = Directory.GetFiles(FolderPath);
 
-            foreach (var FileName in fileNames)
+            foreach (var FileName in FileNames)
             {
-                var composite = LoadCompositeFromSingleFile(FileName.FullName, IsTemplate);
+                
+                var composite = LoadCompositeFromSingleFile(FileName, IsTemplate);
                 list.Add(composite);
             }
             return list;
@@ -46,7 +46,7 @@ namespace DockerComposeMVC
         /// <returns>A single CompositeModels</returns>
         public static CompositeModel LoadCompositeFromSingleFile(string FilePath, bool IsTemplate)
         {
-
+            Program.logger.Debug("Attempting to read and create CompositeModel from file: " + FilePath + " with IsTemplate = " + IsTemplate);
             var yaml = new StreamReader(FilePath);
             var deserializer = new DeserializerBuilder().Build();
             var yamlObject = deserializer.Deserialize(yaml);
@@ -77,6 +77,8 @@ namespace DockerComposeMVC
                                   .ServiceName(composite.Name)
                                   .Build();
             }
+
+            Program.logger.Debug("Made a CompositeModel from file: " + FilePath + " with IsTemplate = " + IsTemplate);
             return composite;
         }
 
@@ -143,7 +145,7 @@ namespace DockerComposeMVC
                         container.Volumes = jsonContainer["volumes"].ToObject<List<string>>();
                     }
                 }
-
+                
                 list.Add(container);
             };
             return list;
@@ -161,7 +163,10 @@ namespace DockerComposeMVC
 
                 try
                 {
+                    Program.logger.Debug("Attempting to save file " + TemplateName + @" in the \data\templates\ folder");
                     File.WriteAllText(Path.Combine(Program.ComposeTemplateDir, TemplateName), fileString);
+                    Program.logger.Debug("Saved file " + TemplateName + @" in the \data\templates\ folder");
+                    
                     AddComposeTemplateToList(TemplateName);
                     status = "SUCCESS";
                     return true;
@@ -181,15 +186,15 @@ namespace DockerComposeMVC
 
         public static bool RemoveFileFromTemplatesFolder(string FileName)
         {
-            try
-            {
+            //try
+            //{
                 File.Delete(Path.Combine(Program.ComposeTemplateDir, FileName));
                 return true;
-            }
-            catch
-            {
-                return false;
-            }
+            //}
+            //catch
+            //{
+            //    return false;
+            //}
         }
         public static bool AddComposeTemplateToList(string FileName)
         {
@@ -205,7 +210,9 @@ namespace DockerComposeMVC
             }
             catch (Exception e)
             {
-                //System.Diagnostics.Debug.WriteLine(e.Message);
+                Program.logger.Error("ERR_FAILED_TO_ADD_COMPOSE_TEMPLATE_FROM_FILE_TO_LIST " + FileName);
+                Program.logger.Error(e.Message);
+
                 return false;
             }
         }
@@ -215,12 +222,18 @@ namespace DockerComposeMVC
             try
             {
                 var searchResult = ComposerNew.TemplatesList.Single(service => service.Name == FileName);
-                RemoveFileFromTemplatesFolder(searchResult.Name);
-                ComposerNew.TemplatesList.Remove(searchResult);
-                return true;
+                //if (RemoveFileFromTemplatesFolder(searchResult.Name))
+                //{
+                    ComposerNew.TemplatesList.Remove(searchResult);
+                    return true;
+                //}
+
+                return false;
             }
             catch (Exception e)
             {
+                Program.logger.Error("ERR_FAILED_TO_REMOVE_COMPOSE_TEMPLATE_FROM_LIST " + FileName);
+                Program.logger.Error(e.Message);
                 return false;
             }
         }
@@ -245,33 +258,37 @@ namespace DockerComposeMVC
                 var searchResult = ComposerNew.ReadyList.Single(service => service.Name == FileName);
                 if ((searchResult.Service.State is ServiceRunningState.Running || searchResult.Service.State is ServiceRunningState.Starting || searchResult.Service.State is ServiceRunningState.Stopping))
                 {
-                    throw new Exception("ERR_CANNOT_DELETE_RUNNING_COMPOSE_FILE");
+                    Program.logger.Error("ERR_CANNOT_DELETE_RUNNING_COMPOSE_SERVICE: " + FileName);
                 }
                 var filename = searchResult.Name;
                 ComposerNew.ReadyList.Remove(searchResult);
-                RemoveFileFromReadyFolder(filename);
+                //RemoveFileFromReadyFolder(filename);
                 return true;
             }
             catch (Exception e)
             {
+                Program.logger.Error("ERR_NO_SUCH_READY_COMPOSE_SERVICE_FOUND");
+                Program.logger.Error(e.Message);
                 return false;
             }
         }
 
         public static string WriteFileToReadyFolder(string contents, string templateName, string instanceName)
         {
+            string filename = templateName.Substring(0, templateName.Length - 4) + "_" + instanceName + "_" + System.DateTime.Now.ToShortDateString() + ".yml";
             try
             {
-                string filename = templateName.Substring(0, templateName.Length - 4) + "_" + instanceName + "_" + System.DateTime.Now.ToShortDateString() + ".yml";
+                Program.logger.Debug("Attempting to save file " + filename + @" in the \data\ready\ folder" );
                 File.WriteAllText(Path.Combine(Program.ComposeReadyDir, filename), contents);
-                System.Diagnostics.Debug.WriteLine("-------------------------");
-                System.Diagnostics.Debug.WriteLine(filename);
+                Program.logger.Debug("Saved file " + filename + @" in the \data\ready\ folder");
+
                 AddToReadyList(filename);
                 return filename;
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                Program.logger.Error("ERR_UNABLE_TO_WRITE_TO_FILE: " + filename);
+                Program.logger.Error(e.Message);
                 return "ERR_UNABLE_TO_WRITE_TO_FILE";
             }
         }
@@ -291,6 +308,7 @@ namespace DockerComposeMVC
             }
             catch (Exception e)
             {
+
                 return false;
             }
         }

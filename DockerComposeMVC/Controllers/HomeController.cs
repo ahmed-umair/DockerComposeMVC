@@ -19,6 +19,7 @@ namespace DockerComposeMVC.Controllers
     {
         public IActionResult Index()
         {
+            Program.logger.Info("Someone just logged into the portal");
             return View();
         }
 
@@ -152,6 +153,9 @@ namespace DockerComposeMVC.Controllers
             }
             catch (Exception e)
             {
+                Program.logger.Error("ERR_NO_SUCH_RUNNING_COMPOSE_FILE_FOUND: " + FileName);
+                Program.logger.Error(e.Message);
+
                 return NotFound("ERR_NO_SUCH_RUNNING_COMPOSE_FILE_FOUND: " + FileName);
             }
 
@@ -197,6 +201,9 @@ namespace DockerComposeMVC.Controllers
             {
                 verificationResult = ComposerNew.VerifyContainer(filename);
             }
+            
+                
+            
 
             if (!verificationResult)
             {
@@ -214,7 +221,12 @@ namespace DockerComposeMVC.Controllers
 
         public IActionResult DebugListReady()
         {
-            return Ok(ComposerNew.ReadyList);
+            var list = new List<String>();
+            foreach(var service in ComposerNew.ReadyList)
+            {
+                list.Add(service.Name);
+            }
+            return Ok(list);
         }
 
         public IActionResult DebugStart([FromQuery] string FileName)
@@ -226,6 +238,9 @@ namespace DockerComposeMVC.Controllers
             }
             catch (Exception e)
             {
+                Program.logger.Error("ERR_NO_SUCH_COMPOSE_FILE_FOUND: " + FileName);
+                Program.logger.Error(e.Message);
+
                 return NotFound("ERR_NO_SUCH_COMPOSE_FILE_FOUND: " + FileName);
             }
 
@@ -241,6 +256,9 @@ namespace DockerComposeMVC.Controllers
             }
             catch (Exception e)
             {
+                Program.logger.Error("ERR_NO_SUCH_COMPOSE_FILE_FOUND: " + cName);
+                Program.logger.Error(e.Message);
+
                 return NotFound("ERR_NO_SUCH_COMPOSE_FILE_FOUND: " + cName);
             }
 
@@ -255,6 +273,9 @@ namespace DockerComposeMVC.Controllers
             }
             catch (Exception e)
             {
+                Program.logger.Error("ERR_NO_SUCH_RUNNING_COMPOSE_FILE_FOUND: " + FileName);
+                Program.logger.Error(e.Message);
+
                 return NotFound("ERR_NO_SUCH_RUNNING_COMPOSE_FILE_FOUND: " + FileName);
             }
 
@@ -274,6 +295,9 @@ namespace DockerComposeMVC.Controllers
             }
             catch (Exception e)
             {
+                Program.logger.Error("ERR_NO_SUCH_RUNNING_COMPOSE_FILE_FOUND: " + FileName);
+                Program.logger.Error(e.Message);
+
                 return NotFound("ERR_NO_SUCH_RUNNING_COMPOSE_FILE_FOUND: " + FileName);
             }
         }
