@@ -1,8 +1,6 @@
 ﻿using Ductus.FluentDocker.Services;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DockerComposeMVC.Models
 {
@@ -13,7 +11,7 @@ namespace DockerComposeMVC.Models
         public List<ContainerModel> ContainersFromFile { get; set; }
         public bool IsTemplate { get; set; }
         public ICompositeService Service { get; set; }
-
+        public System.DateTime dateTimeAdded { get; set; }
         public void UpdateContainersStatus()
         {
             foreach (var container in Service.Containers)

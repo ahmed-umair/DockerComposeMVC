@@ -86,7 +86,7 @@ namespace DockerComposeMVC.Controllers
 
             try
             {
-                System.IO.File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "temp/" + filename + ".yml"), contents);
+                System.IO.File.WriteAllText(Path.Combine(Program.ComposeTemporaryDir, filename + ".yml"), contents);
             }
             catch (Exception e)
             {
@@ -114,7 +114,7 @@ namespace DockerComposeMVC.Controllers
         {
             ViewData["cFileName"] = cName;
             CompositeModel composeFileDetails = ComposerNew.GetSingleCompositeDetail(cName, true);
-            String basePath = Path.Combine(Directory.GetCurrentDirectory(), "data/templates/" + cName);
+            String basePath = Path.Combine(Program.ComposeTemplateDir, cName);
             String contents = System.IO.File.ReadAllText(basePath);
             String[] parameters = ComposerNew.ExtractParameters(contents);
 
@@ -185,10 +185,12 @@ namespace DockerComposeMVC.Controllers
         public IActionResult VerifyUploadedTemplate([FromForm] Dictionary<string, string> dict, [FromForm] String templateName)
         {
             templateName = templateName + ".yml";
-                        
-            String tempPath = Path.Combine(Directory.GetCurrentDirectory(), @"temp\" + templateName);
-            String fileString = System.IO.File.ReadAllText(tempPath);
+            Debug.WriteLine("--------------------");
+            Debug.WriteLine(templateName);
 
+            String tempPath = Path.Combine(Program.ComposeTemporaryDir, templateName);
+            String fileString = System.IO.File.ReadAllText(tempPath);
+            String writeStatus = "";
             string finalComposeString = ComposerNew.ReplaceParams(fileString, dict);
             var filename = ComposeFileOperationsNew.WriteFileToReadyFolder(finalComposeString, templateName, "test");
 
@@ -202,15 +204,13 @@ namespace DockerComposeMVC.Controllers
             {
                 ComposeFileOperationsNew.RemoveFileFromReadyFolder(filename);
                 ComposeFileOperationsNew.RemoveFromReadyList(filename);
-                return View("ErrorPage");
             }
             else
             {
-
-                ComposeFileOperationsNew.AddComposeTemplateToList(filename);
-                return View("SuccessPage");
+                ComposeFileOperationsNew.AddToTemplatesFromFile(Path.Combine(Program.ComposeTemporaryDir, templateName), templateName, out writeStatus);
             }
-            
+
+            return Ok(verificationResult);
         }
 
         public IActionResult DebugListReady()
