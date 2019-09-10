@@ -31,6 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Home\GeneralError.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Home\ErrorPage.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
